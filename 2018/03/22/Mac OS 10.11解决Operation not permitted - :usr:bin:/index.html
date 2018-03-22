@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/ic_favicon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_favicon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_favicon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="遇到的坑," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="前言本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll  更换目录 例如：$ sudo gem install -n (yo">
+<meta name="keywords" content="遇到的坑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac OS 10.11解决Operation not permitted - &#x2F;usr&#x2F;bin&#x2F;">
 <meta property="og:url" content="http://liang10294036.github.io/2018/03/22/Mac OS 10.11解决Operation not permitted - :usr:bin:/index.html">
 <meta property="og:site_name" content="Quinn">
 <meta property="og:description" content="前言本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll  更换目录 例如：$ sudo gem install -n (yo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-22T03:20:10.942Z">
+<meta property="og:updated_time" content="2018-03-22T08:59:48.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OS 10.11解决Operation not permitted - &#x2F;usr&#x2F;bin&#x2F;">
 <meta name="twitter:description" content="前言本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll  更换目录 例如：$ sudo gem install -n (yo">
@@ -160,7 +161,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">lkk's blog</p>
       
   </div>
 
@@ -186,6 +187,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -272,6 +293,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/遇到的坑/" itemprop="url" rel="index">
+                    <span itemprop="name">遇到的坑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -302,7 +345,8 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制<br>系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll</p>
 <ol>
 <li>更换目录 例如：$ sudo gem install -n (your diretory) jekyll （推荐做法 不过别忘记配置环境变量）</li>
-<li>先关闭Rootless安装完Jekyll在打开(本篇博文的重点)</li>
+<li>先关闭Rootless安装完Jekyll在打开(本篇博文的重点)<a id="more"></a>
+</li>
 </ol>
 <h2 id="关闭方法"><a href="#关闭方法" class="headerlink" title="关闭方法"></a>关闭方法</h2><p>重启电脑过程中按住Command-R 进入Recovery模式，然后 实用工具栏找到terminal启动运行<br>输入<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ csrutil disable</span><br></pre></td></tr></table></figure></p>
 <p>看到successful关键字表示命令已经执行成功这里不再截图<br>然后重启这样你就可以修改系统级别的文件了如：/usr/bin</p>
@@ -323,6 +367,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/遇到的坑/" rel="tag"># 遇到的坑</a>
+          
+        </div>
       
 
       
@@ -412,7 +462,7 @@
                 alt="lkk" />
             
               <p class="site-author-name" itemprop="name">lkk</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">清新简约派的代码工作者</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -429,13 +479,59 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liang10294036" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:laingkk4036@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/117402218699572329530" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100009676295987" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -488,16 +584,6 @@
   
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

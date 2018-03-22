@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/ic_favicon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_favicon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_favicon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -79,13 +79,16 @@
 
 
 
+<meta name="description" content="清新简约派的代码工作者">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Quinn">
 <meta property="og:url" content="http://liang10294036.github.io/index.html">
 <meta property="og:site_name" content="Quinn">
+<meta property="og:description" content="清新简约派的代码工作者">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Quinn">
+<meta name="twitter:description" content="清新简约派的代码工作者">
 
 
 
@@ -157,7 +160,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">lkk's blog</p>
       
   </div>
 
@@ -183,6 +186,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -271,6 +294,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/遇到的坑/" itemprop="url" rel="index">
+                    <span itemprop="name">遇到的坑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -299,19 +344,17 @@
 
       
         
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制<br>系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制<br>系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll</p>
 <ol>
 <li>更换目录 例如：$ sudo gem install -n (your diretory) jekyll （推荐做法 不过别忘记配置环境变量）</li>
-<li>先关闭Rootless安装完Jekyll在打开(本篇博文的重点)</li>
-</ol>
-<h2 id="关闭方法"><a href="#关闭方法" class="headerlink" title="关闭方法"></a>关闭方法</h2><p>重启电脑过程中按住Command-R 进入Recovery模式，然后 实用工具栏找到terminal启动运行<br>输入<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ csrutil disable</span><br></pre></td></tr></table></figure></p>
-<p>看到successful关键字表示命令已经执行成功这里不再截图<br>然后重启这样你就可以修改系统级别的文件了如：/usr/bin</p>
-<h2 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h2><p>如果你不确定当前是关闭或者打开同样也可以查看状态<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ csrutil status</span><br></pre></td></tr></table></figure></p>
-<h2 id="打开方法"><a href="#打开方法" class="headerlink" title="打开方法"></a>打开方法</h2><p> 网上有人说csrutil disable 后执行finder会变迟钝<a href="https://bbs.feng.com/forum.php?mod=viewthread&amp;tid=10188576&amp;mobile=no" target="_blank" rel="noopener">链接</a><br> 建议软件安装完成还是要打开保护机制的<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ csrutil enable</span><br></pre></td></tr></table></figure></p>
-<p>同样看到successful字样表示你已经成功打开了Rootless安全保护机制了</p>
-
-          
+<li>先关闭Rootless安装完Jekyll在打开(本篇博文的重点)
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/22/Mac OS 10.11解决Operation not permitted - :usr:bin:/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -400,6 +443,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记录/" itemprop="url" rel="index">
+                    <span itemprop="name">记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -428,32 +493,17 @@
 
       
         
-          
-            <h2 id="常用部分"><a href="#常用部分" class="headerlink" title="常用部分"></a>常用部分</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p> 一般#作为文章大标题，只有一个，### 作为段落标题。</p>
+          <h2 id="常用部分"><a href="#常用部分" class="headerlink" title="常用部分"></a>常用部分</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p> 一般#作为文章大标题，只有一个，### 作为段落标题。</p>
 <p> #个数越多字号越小 相对应范围（h1~h6）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">####</span></span><br></pre></td></tr></table></figure>
 <h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><h5 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line">—</span><br></pre></td></tr></table></figure>
-<h5 id="加粗"><a href="#加粗" class="headerlink" title="加粗"></a>加粗</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**</span><br></pre></td></tr></table></figure>
-<h5 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~</span><br></pre></td></tr></table></figure>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h5 id="代码块标记"><a href="#代码块标记" class="headerlink" title="代码块标记"></a>代码块标记</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##### 代码块缩进表示法</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">Tab 或四个空格</span><br></pre></td></tr></table></figure>
-<h5 id="语法高亮显示"><a href="#语法高亮显示" class="headerlink" title="语法高亮显示"></a>语法高亮显示</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```javascript</span><br></pre></td></tr></table></figure>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|    a    |       b       |      c     |</span><br><span class="line">|:-------:|:------------- | ----------:|</span><br><span class="line">|   居中  |     左对齐    |   右对齐   |</span><br><span class="line">|=========|===============|============|</span><br></pre></td></tr></table></figure>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><h4 id="内链接"><a href="#内链接" class="headerlink" title="内链接"></a>内链接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[百度1](http://www.baidu.com/<span class="string">"百度一下"</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="引用式"><a href="#引用式" class="headerlink" title="引用式"></a>引用式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[百度2][2]</span><br><span class="line">[2]: http://www.baidu.com/</span><br></pre></td></tr></table></figure>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><h4 id="内链接-1"><a href="#内链接-1" class="headerlink" title="内链接"></a>内链接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![name](./01.png <span class="string">'描述'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="引用式-1"><a href="#引用式-1" class="headerlink" title="引用式"></a>引用式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![name][01]</span><br><span class="line">[01]: ./01.png <span class="string">'描述'</span></span><br></pre></td></tr></table></figure>
-<h2 id="其他部分"><a href="#其他部分" class="headerlink" title="其他部分"></a>其他部分</h2><h4 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* one</span><br><span class="line">* two</span><br><span class="line">* three</span><br></pre></td></tr></table></figure>
-<pre><code>+ - 可替代 *
-</code></pre><h4 id="有序"><a href="#有序" class="headerlink" title="有序"></a>有序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. one</span><br><span class="line">2. two</span><br><span class="line">3. three</span><br></pre></td></tr></table></figure>
-<h4 id="序表嵌套"><a href="#序表嵌套" class="headerlink" title="序表嵌套"></a>序表嵌套</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* one</span><br><span class="line">* two</span><br><span class="line">* three</span><br><span class="line"></span><br><span class="line">1. one</span><br><span class="line">2. two</span><br><span class="line">3. three</span><br></pre></td></tr></table></figure>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|这是一个引用</span><br></pre></td></tr></table></figure>
-<h4 id="多层嵌套"><a href="#多层嵌套" class="headerlink" title="多层嵌套"></a>多层嵌套</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|这是一个引用</span><br><span class="line">|| 第二个</span><br><span class="line">|||第三个</span><br></pre></td></tr></table></figure>
-<h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[公式标题锚点](#1)</span><br><span class="line"></span><br><span class="line">[需要跳转的目录] &#123;#1&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Markdown[^1]</span><br><span class="line">[^1]: first blog</span><br></pre></td></tr></table></figure>
-<h2 id="分隔符"><a href="#分隔符" class="headerlink" title="分隔符"></a>分隔符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/21/写博必备markdown语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -542,6 +592,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -570,11 +642,14 @@
 
       
         
-          
-            <p>本文主要围绕AsyncTask的源码对其进行原理分析，帮助理解AsyncTask工作流程以及更好的运用， 若发现错误的地方望告知<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">new</span> AsyncTask&lt;<span class="built_in">String</span>, <span class="built_in">String</span>, <span class="built_in">String</span>&gt;() &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 运行在主线程中, 初始准备操作.</span></span><br><span class="line">public <span class="keyword">void</span> onPreExecute() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 运行在子线程中, 通常做一些耗时的任务.</span></span><br><span class="line">public <span class="built_in">String</span> doInBackground(<span class="built_in">String</span>... params) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 运行主线程中, result就是doInBackground方法返回的值. 即本次任务完成时执行.</span></span><br><span class="line">public <span class="keyword">void</span> onPostExecute(<span class="built_in">String</span> result) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 任务进度更新 运行在主线程</span></span><br><span class="line">protected <span class="keyword">void</span> onProgressUpdate(<span class="built_in">String</span>... values) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 任务被取消时执行 运行在主线程</span></span><br><span class="line">protected <span class="keyword">void</span> onCancelled(<span class="built_in">String</span> result) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;.execute(<span class="built_in">String</span>... params);    <span class="comment">// 1. 开始执行异步任务.</span></span><br></pre></td></tr></table></figure></p>
-<p>要想启动AsyncTask我们就必须执行execute的方法, 那我们就从这个函数开始 代码如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line">public final AsyncTask&lt;Params, Progress, Result&gt; execute(Params... params) &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">mStatus = Status.RUNNING;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里在创建AsyncTask的构造对象里调用了onPreExecute 运行在当前线程中.</span></span><br><span class="line">onPreExecute();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把mWorker中的mParams赋值为用户传递进来的参数.</span></span><br><span class="line">mWorker.mParams = params;</span><br><span class="line"><span class="comment">// sExecutor使用线程池, 执行任务. 这时进入到子线程中.&lt;pre name="code" class="java"&gt;// AsyncTask构造函数在一开始使用异步任务时, 已经调用.</span></span><br><span class="line">public AsyncTask() &#123;</span><br><span class="line">mWorker = <span class="keyword">new</span> WorkerRunnable&lt;Params, Result&gt;() &#123;</span><br><span class="line">public Result call() throws Exception &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 把mWorker对象传递给了FutureTask的构造函数</span></span><br><span class="line">mFuture = <span class="keyword">new</span> FutureTask&lt;Result&gt;(mWorker) &#123;</span><br><span class="line">@Override</span><br><span class="line">protected <span class="keyword">void</span> done() &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;&lt;<span class="regexp">/pre&gt;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">sExecutor.execute(mFuture); return this; &#125;</span></span><br><span class="line"><span class="regexp">&lt;pre&gt;&lt;/</span>pre&gt;</span><br><span class="line">&lt;span style=<span class="string">"color:#b22222"</span>&gt; 查看mWorker的初始化过程, 代码如下:&lt;/span&gt;&lt;pre name="code" class="java"&gt;// AsyncTask构造函数在一开始使用异步任务时, 已经调用.</span><br><span class="line">public AsyncTask() &#123;</span><br><span class="line">mWorker = new WorkerRunnable&lt;Params, Result&gt;() &#123;</span><br><span class="line">public Result call() throws Exception &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 1. 把mWorker对象传递给了FutureTask的构造函数</span><br><span class="line">mFuture = new FutureTask&lt;Result&gt;(mWorker) &#123;</span><br><span class="line">@Override</span><br><span class="line">protected void done() &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;&lt;/pre&gt;</span><br><span class="line">&lt;p&gt;// FutureTask类中接收的是Callable的类型, 其实WorkerRunnable类型实现了Callable的类型. 代码如下&lt;br&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;/p&gt;&lt;pre name="code" class="java"&gt;public FutureTask(Callable&lt;V&gt; callable) &#123;</span><br><span class="line">if (callable == null)</span><br><span class="line">throw new NullPointerException();</span><br><span class="line">// 2. 把callable(mWorker)传递给了Sync的构造函数.</span><br><span class="line">sync = new Sync(callable);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sync(Callable&lt;V&gt; callable) &#123;</span><br><span class="line">// 3. 把接收过来的callable(mWorker)对象赋值给Sync类中的成员变量callable</span><br><span class="line">// 总结: Sync类中的成员变量callable就是AsyncTask中的mWorker对象.</span><br><span class="line">this.callable = callable;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mFuture对象中的run方法如下:</span><br><span class="line">public void run() &#123;</span><br><span class="line">// 1. 调用了innerRun方法.</span><br><span class="line">sync.innerRun();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void innerRun() &#123;</span><br><span class="line">if (!compareAndSetState(READY, RUNNING))</span><br><span class="line">return;</span><br><span class="line"></span><br><span class="line">runner = Thread.currentThread();</span><br><span class="line">if (getState() == RUNNING) &#123; // recheck after setting thread</span><br><span class="line">V result;</span><br><span class="line">try &#123;</span><br><span class="line">// 2. 调用了callable(mWorker)的call方法. 获取一个返回结果.</span><br><span class="line">result = callable.call();</span><br><span class="line">&#125; catch (Throwable ex) &#123;</span><br><span class="line">setException(ex);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">// 4. 把结果传递给set方法.</span><br><span class="line">set(result);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">releaseShared(0); // cancel</span><br><span class="line">&#125;</span><br><span class="line">&#125;&lt;/pre&gt;在AsyncTask的构造函数中, mWorker对象初始化时, 已经覆盖了call方法, 代码如下&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;/p&gt;&lt;pre name="code" class="java"&gt;public Result call() throws Exception &#123;</span><br><span class="line">Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);</span><br><span class="line">// 3. 调用了用户实现的doInBackground方法, 去执行一个耗时的任务. 运行在子线程中.</span><br><span class="line">// doInBackground接收的参数就是execute方法接收的参数.</span><br><span class="line">return doInBackground(mParams);</span><br><span class="line">&#125;</span><br><span class="line">protected void set(V v) &#123;</span><br><span class="line">// 5. 继续把参数传递给innerSet方法.</span><br><span class="line">sync.innerSet(v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void innerSet(V v) &#123;</span><br><span class="line">for (;;) &#123;</span><br><span class="line">int s = getState();</span><br><span class="line">if (s == RAN)</span><br><span class="line">return;</span><br><span class="line">if (s == CANCELLED) &#123;</span><br><span class="line">// aggressively release to set runner to null,</span><br><span class="line">// in case we are racing with a cancel request</span><br><span class="line">// that will try to interrupt runner</span><br><span class="line">releaseShared(0);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">if (compareAndSetState(s, RAN)) &#123;</span><br><span class="line">// 6. 把doInBackground返回的结果赋值给成员变量result</span><br><span class="line">result = v;</span><br><span class="line">releaseShared(0);</span><br><span class="line">// 7. 调用FutureTask中的done方法.</span><br><span class="line">done();</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/pre&gt;&lt;br&gt;</span><br><span class="line">此方法定义在AsyncTask的构造函数中, 初始化mFuture时,已经覆盖了done方法, 代码如下:&lt;br&gt;</span><br><span class="line">&lt;pre name="code" class="java"&gt;@Override</span><br><span class="line">protected void done() &#123;</span><br><span class="line">try &#123;</span><br><span class="line">postResultIfNotInvoked(get());</span><br><span class="line">&#125; catch (InterruptedException e) &#123;</span><br><span class="line">android.util.Log.w(LOG_TAG, e);</span><br><span class="line">&#125; catch (ExecutionException e) &#123;</span><br><span class="line">throw new RuntimeException("An error occurred while executing doInBackground()",</span><br><span class="line">e.getCause());</span><br><span class="line">&#125; catch (CancellationException e) &#123;</span><br><span class="line">postResultIfNotInvoked(null);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void postResultIfNotInvoked(Result result) &#123;</span><br><span class="line">final boolean wasTaskInvoked = mTaskInvoked.get();</span><br><span class="line">if (!wasTaskInvoked) &#123;</span><br><span class="line">postResult(result);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">private Result postResult(Result result) &#123;</span><br><span class="line">@SuppressWarnings("unchecked") // 拿到已经创建的Handle</span><br><span class="line">Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,</span><br><span class="line">new AsyncTaskResult&lt;Result&gt;(this, result));</span><br><span class="line">message.sendToTarget(); // 发送到MessageQueue</span><br><span class="line">return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 创建的handle</span><br><span class="line">private static Handler getHandler() &#123;</span><br><span class="line">synchronized (AsyncTask.class) &#123;</span><br><span class="line">if (sHandler == null) &#123;</span><br><span class="line">sHandler = new InternalHandler();</span><br><span class="line">&#125;</span><br><span class="line">return sHandler;</span><br><span class="line">&#125;</span><br><span class="line">&#125;&lt;/pre&gt;最后我们来看看在handler里的逻辑处理&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;/p&gt;&lt;pre name="code" class="html"&gt;private static class InternalHandler extends Handler &#123;</span><br><span class="line">@SuppressWarnings(&#123;"unchecked", "RawUseOfParameterizedType"&#125;)</span><br><span class="line">@Override</span><br><span class="line">public void handleMessage(Message msg) &#123;</span><br><span class="line">// 把obj转换成AsyncTaskResult类, 这个类中mTask对象就是当前的AsyncTask对象. mData对象就是doInBackground的返回结果.</span><br><span class="line">AsyncTaskResult result = (AsyncTaskResult) msg.obj;</span><br><span class="line">switch (msg.what) &#123;</span><br><span class="line">case MESSAGE_POST_RESULT:</span><br><span class="line">// There is only one result</span><br><span class="line">// 13. 调用AsyncTask中的finish方法, 并且把doInBackground的返回结果传递进去.</span><br><span class="line">result.mTask.finish(result.mData[0]);</span><br><span class="line">break;</span><br><span class="line">case MESSAGE_POST_PROGRESS:</span><br><span class="line">result.mTask.onProgressUpdate(result.mData); // 这里的函数也是经常用到通常更新ui进度</span><br><span class="line">break;</span><br><span class="line">case MESSAGE_POST_CANCEL:</span><br><span class="line">result.mTask.onCancelled();</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">private void finish(Result result) &#123;</span><br><span class="line">if (isCancelled()) &#123;</span><br><span class="line">onCancelled(result); // 这里执行取消操作</span><br><span class="line">&#125; else &#123;</span><br><span class="line">onPostExecute(result);</span><br><span class="line">// 14. 把doInBackground的返回结果传递给用户实现的onPostExecute方法. 运行在主线程中, 用户可以做一些操作界面, 更新界面的操作.</span><br><span class="line">&#125;</span><br><span class="line">mStatus = Status.FINISHED;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          <p>本文主要围绕AsyncTask的源码对其进行原理分析，帮助理解AsyncTask工作流程以及更好的运用， 若发现错误的地方望告知<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">new</span> AsyncTask&lt;<span class="built_in">String</span>, <span class="built_in">String</span>, <span class="built_in">String</span>&gt;() &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 运行在主线程中, 初始准备操作.</span></span><br><span class="line">public <span class="keyword">void</span> onPreExecute() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 运行在子线程中, 通常做一些耗时的任务.</span></span><br><span class="line">public <span class="built_in">String</span> doInBackground(<span class="built_in">String</span>... params) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 运行主线程中, result就是doInBackground方法返回的值. 即本次任务完成时执行.</span></span><br><span class="line">public <span class="keyword">void</span> onPostExecute(<span class="built_in">String</span> result) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 任务进度更新 运行在主线程</span></span><br><span class="line">protected <span class="keyword">void</span> onProgressUpdate(<span class="built_in">String</span>... values) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 任务被取消时执行 运行在主线程</span></span><br><span class="line">protected <span class="keyword">void</span> onCancelled(<span class="built_in">String</span> result) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;.execute(<span class="built_in">String</span>... params);    <span class="comment">// 1. 开始执行异步任务.</span></span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/21/AsyncTask源码分析/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -648,7 +723,7 @@
                 alt="lkk" />
             
               <p class="site-author-name" itemprop="name">lkk</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">清新简约派的代码工作者</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -665,13 +740,59 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liang10294036" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:laingkk4036@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/117402218699572329530" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100009676295987" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -708,16 +829,6 @@
   
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
