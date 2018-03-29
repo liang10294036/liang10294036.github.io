@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="清新简约派的代码工作者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Quinn">
-<meta property="og:url" content="http://liang10294036.github.io/index.html">
+<meta name="description" content="android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作 相关文档GitHubeasypermissions Google官网介绍在运行时请求权限 使用步骤添加依">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EasyPermissions轻松搞定动态权限申请">
+<meta property="og:url" content="http://liang10294036.github.io/2018/03/23/EasyPermissions轻松搞定动态权限申请/index.html">
 <meta property="og:site_name" content="Quinn">
-<meta property="og:description" content="清新简约派的代码工作者">
+<meta property="og:description" content="android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作 相关文档GitHubeasypermissions Google官网介绍在运行时请求权限 使用步骤添加依">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-29T13:52:59.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quinn">
-<meta name="twitter:description" content="清新简约派的代码工作者">
+<meta name="twitter:title" content="EasyPermissions轻松搞定动态权限申请">
+<meta name="twitter:description" content="android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作 相关文档GitHubeasypermissions Google官网介绍在运行时请求权限 使用步骤添加依">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://liang10294036.github.io/"/>
+  <link rel="canonical" href="http://liang10294036.github.io/2018/03/23/EasyPermissions轻松搞定动态权限申请/"/>
 
 
 
 
 
-  <title>Quinn</title>
+  <title>EasyPermissions轻松搞定动态权限申请 | Quinn</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,9 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -269,9 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/23/EasyPermissions轻松搞定动态权限申请/" itemprop="url">EasyPermissions轻松搞定动态权限申请</a></h1>
+          <h1 class="post-title" itemprop="name headline">EasyPermissions轻松搞定动态权限申请</h1>
         
 
         <div class="post-meta">
@@ -343,9 +342,7 @@
       
 
       
-        
-          
-            <p>android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作</p>
+        <p>android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作</p>
 <h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><p>GitHub<br><a href="https://github.com/googlesamples/easypermissions" target="_blank" rel="noopener">easypermissions</a></p>
 <p>Google官网介绍<br><a href="https://developer.android.com/training/permissions/requesting.html" target="_blank" rel="noopener">在运行时请求权限</a></p>
 <h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h4 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation <span class="string">'pub.devrel:easypermissions:1.2.0'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -375,8 +372,6 @@
 <p>这个函数其实就是调用的我们前面讲到的的抽象类PermissionHelper中的抽象函数shouldShowRequestPermissionRationale<br>源码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Check if at least one permission in the list of denied permissions has been permanently</span></span><br><span class="line"><span class="comment">* denied (user clicked "Never ask again").</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* @param host              context requesting permissions.</span></span><br><span class="line"><span class="comment">* @param deniedPermissions list of denied permissions, usually from &#123;@link</span></span><br><span class="line"><span class="comment">*                          PermissionCallbacks#onPermissionsDenied(int, List)&#125;</span></span><br><span class="line"><span class="comment">* @return &#123;@code true&#125; if at least one permission in the list was permanently denied.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">static</span> boolean somePermissionPermanentlyDenied(@NonNull Activity host,</span><br><span class="line">@NonNull List&lt;<span class="built_in">String</span>&gt; deniedPermissions) &#123;</span><br><span class="line">    <span class="keyword">return</span> PermissionHelper.newInstance(host)</span><br><span class="line">        .somePermissionPermanentlyDenied(deniedPermissions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>下面是我自己写的例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">StartActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="title">implements</span> <span class="title">EasyPermissions</span>.<span class="title">PermissionCallbacks</span></span>&#123;</span><br><span class="line"></span><br><span class="line">private final int RC_READ_PERM = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_start);</span><br><span class="line">    execPermission();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">protected <span class="keyword">void</span> execPermission() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (EasyPermissions.hasPermissions(<span class="keyword">this</span>, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) &#123;</span><br><span class="line">            <span class="comment">// 已经获取到权限</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 未获取到权限 执行权限请求</span></span><br><span class="line">        EasyPermissions.requestPermissions(</span><br><span class="line">        <span class="keyword">this</span>,</span><br><span class="line">        <span class="string">"需要访问读写权限"</span>,</span><br><span class="line">        RC_READ_PERM,</span><br><span class="line">        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> onRequestPermissionsResult(int requestCode, @NonNull <span class="built_in">String</span>[] permissions, @NonNull int[] grantResults) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">    EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, <span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> onPermissionsGranted(int requestCode, @NonNull List&lt;<span class="built_in">String</span>&gt; perms) &#123;</span><br><span class="line">    <span class="keyword">if</span> (requestCode == RC_READ_PERM &amp;&amp; EasyPermissions.hasPermissions(<span class="keyword">this</span>,             Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) &#123;</span><br><span class="line">        startActivity(WebScriptActivity.getIntent(StartActivity.this));</span><br><span class="line">        finish();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> onPermissionsDenied(int requestCode, @NonNull List&lt;<span class="built_in">String</span>&gt; perms) &#123;</span><br><span class="line">    <span class="keyword">if</span> (EasyPermissions.somePermissionPermanentlyDenied(<span class="keyword">this</span>, perms)) &#123; <span class="comment">// 权限被勾选为不再询问</span></span><br><span class="line">        Toast.makeText(<span class="keyword">this</span>, <span class="string">"需要访问读写权限"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
     
@@ -391,312 +386,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/03/22/Mac OS 10.11解决Operation not permitted - :usr:bin:/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lkk">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Quinn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/22/Mac OS 10.11解决Operation not permitted - :usr:bin:/" itemprop="url">Mac OS 10.11解决Operation not permitted - /usr/bin/</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T10:27:41+08:00">
-                2018-03-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/遇到的坑/" itemprop="url" rel="index">
-                    <span itemprop="name">遇到的坑</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制<br>系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll</p>
-<ol>
-<li>更换目录 例如：$ sudo gem install -n (your diretory) jekyll （推荐做法 不过别忘记配置环境变量）</li>
-<li>先关闭Rootless安装完Jekyll在打开(本篇博文的重点)
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/22/Mac OS 10.11解决Operation not permitted - :usr:bin:/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/Mac OS 10.11解决Operation not permitted - :usr:bin:/" rel="next" title="Mac OS 10.11解决Operation not permitted - /usr/bin/">
+                <i class="fa fa-chevron-left"></i> Mac OS 10.11解决Operation not permitted - /usr/bin/
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/03/21/写博必备markdown语法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lkk">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Quinn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/写博必备markdown语法/" itemprop="url">Markdown 语法整理大集合</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T15:07:38+08:00">
-                2018-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/记录/" itemprop="url" rel="index">
-                    <span itemprop="name">记录</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="常用部分"><a href="#常用部分" class="headerlink" title="常用部分"></a>常用部分</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p> 一般#作为文章大标题，只有一个，### 作为段落标题。</p>
-<p> #个数越多字号越小 相对应范围（h1~h6）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">####</span></span><br></pre></td></tr></table></figure>
-<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><h5 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line">—</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/21/写博必备markdown语法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -706,156 +425,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2017/03/21/AsyncTask源码分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lkk">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Quinn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/21/AsyncTask源码分析/" itemprop="url">AsyncTask源码解析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T15:54:00+08:00">
-                2017-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文主要围绕AsyncTask的源码对其进行原理分析，帮助理解AsyncTask工作流程以及更好的运用， 若发现错误的地方望告知<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">new</span> AsyncTask&lt;<span class="built_in">String</span>, <span class="built_in">String</span>, <span class="built_in">String</span>&gt;() &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 运行在主线程中, 初始准备操作.</span></span><br><span class="line">public <span class="keyword">void</span> onPreExecute() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 运行在子线程中, 通常做一些耗时的任务.</span></span><br><span class="line">public <span class="built_in">String</span> doInBackground(<span class="built_in">String</span>... params) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 运行主线程中, result就是doInBackground方法返回的值. 即本次任务完成时执行.</span></span><br><span class="line">public <span class="keyword">void</span> onPostExecute(<span class="built_in">String</span> result) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 任务进度更新 运行在主线程</span></span><br><span class="line">protected <span class="keyword">void</span> onProgressUpdate(<span class="built_in">String</span>... values) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 任务被取消时执行 运行在主线程</span></span><br><span class="line">protected <span class="keyword">void</span> onCancelled(<span class="built_in">String</span> result) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;.execute(<span class="built_in">String</span>... params);    <span class="comment">// 1. 开始执行异步任务.</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/21/AsyncTask源码分析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -863,6 +437,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -883,8 +461,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -976,6 +563,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关文档"><span class="nav-number">1.</span> <span class="nav-text">相关文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用步骤"><span class="nav-number">2.</span> <span class="nav-text">使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加依赖"><span class="nav-number">2.0.1.</span> <span class="nav-text">添加依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查运行时scared读写权限"><span class="nav-number">2.0.2.</span> <span class="nav-text">检查运行时scared读写权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#申请权限"><span class="nav-number">2.0.3.</span> <span class="nav-text">申请权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求权限结果回调"><span class="nav-number">2.0.4.</span> <span class="nav-text">请求权限结果回调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例"><span class="nav-number">2.0.5.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1106,6 +709,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
