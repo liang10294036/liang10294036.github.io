@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言最近公司项目涉及到硬件，需要给机器发送指令，过程是这样的:  首先是发送指令不能并发执行，要等到该指令响应结束才能发起第二条指令 两台设备一起执行任务，会有一台丢失响应数据，所以过个设备需要逐个执行任务上述两种情况都再引导我要使用队列了  并行和并发区别1、并行是指两者同时执行一件事，比如赛跑，两个人都在不停的往前跑；2、并发是指资源有限的情况下，两者交替轮流使用资源，比如一段路(单核CPU资">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="任务串行-非阻塞队列+线程锁和阻塞队列">
+<meta property="og:url" content="http://liang10294036.github.io/2018/04/02/任务串行-非阻塞队列+线程锁和阻塞队列/index.html">
+<meta property="og:site_name" content="Quinn">
+<meta property="og:description" content="前言最近公司项目涉及到硬件，需要给机器发送指令，过程是这样的:  首先是发送指令不能并发执行，要等到该指令响应结束才能发起第二条指令 两台设备一起执行任务，会有一台丢失响应数据，所以过个设备需要逐个执行任务上述两种情况都再引导我要使用队列了  并行和并发区别1、并行是指两者同时执行一件事，比如赛跑，两个人都在不停的往前跑；2、并发是指资源有限的情况下，两者交替轮流使用资源，比如一段路(单核CPU资">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-02T10:01:21.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="任务串行-非阻塞队列+线程锁和阻塞队列">
+<meta name="twitter:description" content="前言最近公司项目涉及到硬件，需要给机器发送指令，过程是这样的:  首先是发送指令不能并发执行，要等到该指令响应结束才能发起第二条指令 两台设备一起执行任务，会有一台丢失响应数据，所以过个设备需要逐个执行任务上述两种情况都再引导我要使用队列了  并行和并发区别1、并行是指两者同时执行一件事，比如赛跑，两个人都在不停的往前跑；2、并发是指资源有限的情况下，两者交替轮流使用资源，比如一段路(单核CPU资">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liang10294036.github.io/2018/04/02/任务串行-非阻塞队列+线程锁和阻塞队列/"/>
+
+
+
+
+
+  <title>任务串行-非阻塞队列+线程锁和阻塞队列 | Quinn</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Quinn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">lkk's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/04/02/任务串行-非阻塞队列+线程锁和阻塞队列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">任务串行-非阻塞队列+线程锁和阻塞队列</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T15:00:04+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近公司项目涉及到硬件，需要给机器发送指令，过程是这样的:</p>
+<ol>
+<li>首先是发送指令不能并发执行，要等到该指令响应结束才能发起第二条指令</li>
+<li>两台设备一起执行任务，会有一台丢失响应数据，所以过个设备需要逐个执行任务<br>上述两种情况都再引导我要使用队列了</li>
+</ol>
+<h2 id="并行和并发区别"><a href="#并行和并发区别" class="headerlink" title="并行和并发区别"></a>并行和并发区别</h2><p>1、并行是指两者同时执行一件事，比如赛跑，两个人都在不停的往前跑；<br>2、并发是指资源有限的情况下，两者交替轮流使用资源，比如一段路(单核CPU资源)同时只能过一个人，A走一段后，让给B，B用完继续给A ，交替使用，目的是提高效率</p>
+<a id="more"></a>
+<h2 id="队列属性"><a href="#队列属性" class="headerlink" title="队列属性"></a>队列属性</h2><p>队列实现的是一种先入先出（FIFO）策略,队列的先入先出特性如同生活中的排队现象一样。因为队列既有队头，又有队尾，所以在实现是需要一个数组和两个分别指向对头和队尾的属性。关于队列属性，现有以下说明：</p>
+<ol>
+<li>队头属性指向队头元素所在位置，队尾属性指向队尾元素的下一个位置，即下一个元素即将插入的位置。</li>
+<li>为防止队列的队头移动会引起数组前端空间的浪费，一般设置队头和队尾两属性循环移动。</li>
+<li>当队尾元素加一取模等于队头元素时，说明此队列存储空间已满。</li>
+<li>当队头元素和队尾元素相等时，说明此队列为空。</li>
+</ol>
+<h2 id="队列实现"><a href="#队列实现" class="headerlink" title="队列实现"></a>队列实现</h2><h4 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/ConcurrentLinkedQueue.html" target="_blank" rel="noopener">ConcurrentLinkedQueue<e></e></a></h4><p>无界限线程安全, 非阻塞，基于链接节点,元素按FIFO原则进行排序，不允许使用null元素，否则抛NullPointerException，常用函数：</p>
+<ol>
+<li>add(E e): 内部执行的是offer()函数</li>
+<li>offer(E e): 在队列的尾部插入指定的元素。由于队列是无界的，此方法将永远不会返回false</li>
+<li>poll():  从队列取出元素并且删除该元素</li>
+<li>peek():  获取但不移除此队列的头</li>
+<li>remove(Object o): 从队列中移除制定的元素，如果存在返回true 反之false</li>
+<li>isEmpty():</li>
+<li>size():</li>
+<li>contains(Object o):  如果此队列包含指定元素，则返回 true</li>
+</ol>
+<p>详细原理参考: <a href="http://ifeve.com/concurrentlinkedqueue/" target="_blank" rel="noopener">http://ifeve.com/concurrentlinkedqueue/</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Created by lkk on 2018/3/28.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">QueueLinkedJob</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">QueueJobListener listener;</span><br><span class="line"></span><br><span class="line">private volatile boolean isRunning = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 任务队列</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">private final Queue&lt;<span class="built_in">Object</span>&gt; sWriteQueue = <span class="keyword">new</span> ConcurrentLinkedQueue&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 线程锁</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">private final <span class="built_in">Object</span> lock = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line">public QueueLinkedJob(QueueJobListener listener) &#123;</span><br><span class="line">    <span class="keyword">this</span>.listener = listener;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 添加指令任务</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">void</span> addJobHex(<span class="built_in">Object</span>... hexs) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">Object</span> hex : hexs) &#123;</span><br><span class="line">        sWriteQueue.offer(hex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 按顺序(先进先出)</span></span><br><span class="line"><span class="comment">* 取出指令并且删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">void</span> pollJobHex(<span class="built_in">String</span> hex) &#123;</span><br><span class="line">    sWriteQueue.poll();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 取出某一项指令并且删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">void</span> removeJobHex(<span class="built_in">String</span> hex) &#123;</span><br><span class="line">    sWriteQueue.remove(hex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public boolean isRunning() &#123;</span><br><span class="line">    <span class="keyword">return</span> isRunning;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public <span class="keyword">void</span> startJob() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isRunning) &#123;</span><br><span class="line">        ThreadPool.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public <span class="keyword">void</span> run() &#123;</span><br><span class="line">                isRunning = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                        Thread.sleep(<span class="number">200</span>);</span><br><span class="line">                        <span class="built_in">Object</span> hex = sWriteQueue.poll();</span><br><span class="line">                        <span class="keyword">if</span> (hex != <span class="literal">null</span>) &#123;</span><br><span class="line">                            listener.executeJobHex(hex);</span><br><span class="line">                            synchronized (lock) &#123;</span><br><span class="line">                            lock.wait();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            isRunning = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 完成被执行完成任务</span></span><br><span class="line"><span class="comment">* 唤醒线程 执行下一条任务</span></span><br><span class="line"><span class="comment">* 注： 任务完成必须调用该函数否则将无法执行下一条指令</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">void</span> completeJob() &#123;</span><br><span class="line">    synchronized (lock) &#123;</span><br><span class="line">        lock.notify();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/LinkedBlockingQueue.html" target="_blank" rel="noopener">LinkedBlockingQueue<e></e></a></h4><p>线程安全，阻塞队列，可以指定容量，也可以不指定，不指定的话，默认最大是Integer.MAX_VALUE<br>阻塞队列概要：</p>
+<ol>
+<li>阻塞添加-所谓的阻塞添加是指当阻塞队列元素已满时，队列会阻塞加入元素的线程，直队列元素不满时才重新唤醒线程执行元素加入操作。</li>
+<li>阻塞删除-阻塞删除是指在队列元素为空时，删除队列元素的线程将被阻塞，直到队列不为空再执行删除操作(一般都会返回被删除的元素)</li>
+</ol>
+<p>操作函数：</p>
+<ol>
+<li>add(E e) : 添加成功返回true，失败抛IllegalStateException异常</li>
+<li>offer(E e) : 成功返回 true，如果此队列已满，则返回 false。</li>
+<li>put(E e) :将元素插入此队列的尾部，如果该队列已满，则一直阻塞</li>
+<li>remove(Object o) :移除指定元素,成功返回true，失败返回false</li>
+<li>poll() : 获取并移除此队列的头元素，若队列为空，则返回 null</li>
+<li>take()：获取并移除此队列头元素，若没有元素则一直阻塞。</li>
+<li>element() ：获取但不移除此队列的头元素，没有元素则抛异常</li>
+<li>peek() :获取但不移除此队列的头；若队列为空，则返回 null。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">QueueLinkedTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">private <span class="keyword">static</span> final LinkedBlockingQueue&lt;<span class="built_in">String</span>&gt; sWriteQueue = <span class="keyword">new</span> LinkedBlockingQueue&lt;<span class="built_in">String</span>&gt;(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">        public <span class="keyword">void</span> run() &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                boolean result = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">for</span>(int i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line"><span class="comment">//              hread.sleep(500);</span></span><br><span class="line"><span class="comment">//              result = sWriteQueue.offer("job: " + i);</span></span><br><span class="line">                sWriteQueue.put(<span class="string">"job: "</span> + i);</span><br><span class="line">                System.out.println(<span class="string">"--------&gt;result: "</span> + i);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;.start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">        public <span class="keyword">void</span> run() &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                        <span class="built_in">String</span> job = sWriteQueue.poll();</span><br><span class="line">                        <span class="keyword">if</span>(<span class="literal">null</span> != job)&#123;</span><br><span class="line">                            System.out.println(<span class="string">"--------&gt;job: "</span> + job);</span><br><span class="line">                        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                            System.out.println(<span class="string">"--------&gt;job-break"</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>打印结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">--------&gt;result: <span class="number">0</span></span><br><span class="line">--------&gt;job: job: <span class="number">0</span></span><br><span class="line">--------&gt;result: <span class="number">1</span></span><br><span class="line">--------&gt;job: job: <span class="number">1</span></span><br><span class="line">--------&gt;result: <span class="number">2</span></span><br><span class="line">--------&gt;job: job: <span class="number">2</span></span><br><span class="line">--------&gt;result: <span class="number">3</span></span><br><span class="line">--------&gt;job: job: <span class="number">3</span></span><br><span class="line">--------&gt;result: <span class="number">4</span></span><br><span class="line">--------&gt;job: job: <span class="number">4</span></span><br><span class="line">--------&gt;result: <span class="number">5</span></span><br><span class="line">--------&gt;job: job: <span class="number">5</span></span><br><span class="line">--------&gt;result: <span class="number">6</span></span><br><span class="line">--------&gt;job: job: <span class="number">6</span></span><br><span class="line">--------&gt;result: <span class="number">7</span></span><br><span class="line">--------&gt;job: job: <span class="number">7</span></span><br><span class="line">--------&gt;result: <span class="number">8</span></span><br><span class="line">--------&gt;job: job: <span class="number">8</span></span><br><span class="line">--------&gt;result: <span class="number">9</span></span><br><span class="line">--------&gt;job: job: <span class="number">9</span></span><br><span class="line">--------&gt;job-<span class="keyword">break</span></span><br></pre></td></tr></table></figure></p>
+<p>还有以下实例我都加入了API超链接，就不一一举例</p>
+<h4 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/ArrayBlockingQueue.html" target="_blank" rel="noopener">ArrayBlockingQueue<e></e></a></h4><h4 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/DelayQueue.html" target="_blank" rel="noopener">DelayQueue<e extends="" delayed=""></e></a></h4><h4 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/PriorityBlockingQueue.html" target="_blank" rel="noopener">PriorityBlockingQueue<e></e></a></h4><h4 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/SynchronousQueue.html" target="_blank" rel="noopener">SynchronousQueue<e></e></a></h4><p>上述都继承自AbstractQueue<e></e></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/23/EasyPermissions轻松搞定动态权限申请/" rel="next" title="EasyPermissions轻松搞定动态权限申请">
+                <i class="fa fa-chevron-left"></i> EasyPermissions轻松搞定动态权限申请
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="lkk" />
+            
+              <p class="site-author-name" itemprop="name">lkk</p>
+              <p class="site-description motion-element" itemprop="description">清新简约派的代码工作者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liang10294036" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:laingkk4036@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/117402218699572329530" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100009676295987" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并行和并发区别"><span class="nav-number">2.</span> <span class="nav-text">并行和并发区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列属性"><span class="nav-number">3.</span> <span class="nav-text">队列属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列实现"><span class="nav-number">4.</span> <span class="nav-text">队列实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ConcurrentLinkedQueue"><span class="nav-number">4.0.1.</span> <span class="nav-text">ConcurrentLinkedQueue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkedBlockingQueue"><span class="nav-number">4.0.2.</span> <span class="nav-text">LinkedBlockingQueue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayBlockingQueue"><span class="nav-number">4.0.3.</span> <span class="nav-text">ArrayBlockingQueue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DelayQueue"><span class="nav-number">4.0.4.</span> <span class="nav-text">DelayQueue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PriorityBlockingQueue"><span class="nav-number">4.0.5.</span> <span class="nav-text">PriorityBlockingQueue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SynchronousQueue"><span class="nav-number">4.0.6.</span> <span class="nav-text">SynchronousQueue</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lkk</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
