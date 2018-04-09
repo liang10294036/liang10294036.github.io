@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="Quinn">
 <meta property="og:description" content="前言最近公司项目涉及到硬件，需要给机器发送指令，过程是这样的:  首先是发送指令不能并发执行，要等到该指令响应结束才能发起第二条指令 两台设备一起执行任务，会有一台丢失响应数据，所以过个设备需要逐个执行任务上述两种情况都再引导我要使用队列了  并行和并发区别1、并行是指两者同时执行一件事，比如赛跑，两个人都在不停的往前跑；2、并发是指资源有限的情况下，两者交替轮流使用资源，比如一段路(单核CPU资">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-02T10:01:21.005Z">
+<meta property="og:image" content="http://liang10294036.github.io/Users/lkk/Documents/github/myHexoBlog/source/images/background.jpeg">
+<meta property="og:updated_time" content="2018-04-02T10:30:41.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="任务串行-非阻塞队列+线程锁和阻塞队列">
 <meta name="twitter:description" content="前言最近公司项目涉及到硬件，需要给机器发送指令，过程是这样的:  首先是发送指令不能并发执行，要等到该指令响应结束才能发起第二条指令 两台设备一起执行任务，会有一台丢失响应数据，所以过个设备需要逐个执行任务上述两种情况都再引导我要使用队列了  并行和并发区别1、并行是指两者同时执行一件事，比如赛跑，两个人都在不停的往前跑；2、并发是指资源有限的情况下，两者交替轮流使用资源，比如一段路(单核CPU资">
+<meta name="twitter:image" content="http://liang10294036.github.io/Users/lkk/Documents/github/myHexoBlog/source/images/background.jpeg">
 
 
 
@@ -389,6 +391,7 @@
 <p>打印结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">--------&gt;result: <span class="number">0</span></span><br><span class="line">--------&gt;job: job: <span class="number">0</span></span><br><span class="line">--------&gt;result: <span class="number">1</span></span><br><span class="line">--------&gt;job: job: <span class="number">1</span></span><br><span class="line">--------&gt;result: <span class="number">2</span></span><br><span class="line">--------&gt;job: job: <span class="number">2</span></span><br><span class="line">--------&gt;result: <span class="number">3</span></span><br><span class="line">--------&gt;job: job: <span class="number">3</span></span><br><span class="line">--------&gt;result: <span class="number">4</span></span><br><span class="line">--------&gt;job: job: <span class="number">4</span></span><br><span class="line">--------&gt;result: <span class="number">5</span></span><br><span class="line">--------&gt;job: job: <span class="number">5</span></span><br><span class="line">--------&gt;result: <span class="number">6</span></span><br><span class="line">--------&gt;job: job: <span class="number">6</span></span><br><span class="line">--------&gt;result: <span class="number">7</span></span><br><span class="line">--------&gt;job: job: <span class="number">7</span></span><br><span class="line">--------&gt;result: <span class="number">8</span></span><br><span class="line">--------&gt;job: job: <span class="number">8</span></span><br><span class="line">--------&gt;result: <span class="number">9</span></span><br><span class="line">--------&gt;job: job: <span class="number">9</span></span><br><span class="line">--------&gt;job-<span class="keyword">break</span></span><br></pre></td></tr></table></figure></p>
 <p>还有以下实例我都加入了API超链接，就不一一举例</p>
 <h4 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/ArrayBlockingQueue.html" target="_blank" rel="noopener">ArrayBlockingQueue<e></e></a></h4><h4 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/DelayQueue.html" target="_blank" rel="noopener">DelayQueue<e extends="" delayed=""></e></a></h4><h4 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/PriorityBlockingQueue.html" target="_blank" rel="noopener">PriorityBlockingQueue<e></e></a></h4><h4 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a><a href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/util/concurrent/SynchronousQueue.html" target="_blank" rel="noopener">SynchronousQueue<e></e></a></h4><p>上述都继承自AbstractQueue<e></e></p>
+<p><img src="/Users/lkk/Documents/github/myHexoBlog/source/images/background.jpeg" alt=""></p>
 
       
     </div>
@@ -428,6 +431,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/09/flex使用/" rel="prev" title="flex使用">
+                flex使用 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -508,7 +515,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
