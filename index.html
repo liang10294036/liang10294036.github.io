@@ -1,116 +1,1288 @@
 <!DOCTYPE html>
 
-<html>
 
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
-<title>持子之手与子偕老</title>
 
-<style>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:0.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
 
-body{overflow: hidden;font-family:"Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;background:#79a8ae;color:#666;font-size:16px;line-height:1.5em;}h1{color:#111;margin:0 0 12px 0;font-size:24px;line-height:1.5em;}p{margin:0 0 10x 0;}a{color:#888;text-decoration:none;border-bottom:1px solid #ccc;}a:hover{border-bottom-color:#888;}body,.overlay{-webkit-perspective:1000;-webkit-perspective-origin-y:25%;}.body--ready{background:-webkit-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);background:-moz-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);background:-o-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);background:-ms-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);background:linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);}.body--ready .overlay{-webkit-transition:-webkit-transform 0.7s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.7s cubic-bezier(0.694,0.0482,0.335,1);-moz-transition:-moz-transform 0.7s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.7s cubic-bezier(0.694,0.0482,0.335,1);-ms-transition:-ms-transform 0.7s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.7s cubic-bezier(0.694,0.0482,0.335,1);-o-transition:-o-transform 0.7s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.7s cubic-bezier(0.694,0.0482,0.335,1);transition:transform 0.7s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.7s cubic-bezier(0.694,0.0482,0.335,1);}.ui{position:absolute;left:50%;bottom:5%;width:300px;margin-left:-150px;}.ui-input{width:100%;height:50px;background:none;font-size:24px;font-weight:bold;color:#fff;text-align:center;border:none;border-bottom:2px solid white;}.ui-input:focus{outline:none;border:none;border-bottom:2px solid white;}.ui-return{display:none;position:absolute;top:20px;right:0;padding:3px 2px 0 2px;font-size:10px;line-height:10px;color:#fff;border:1px solid #fff;}.ui--enter .ui-return{display:block;}.ui--wide{width:76%;margin-left:12%;left:0;}.ui--wide .ui-return{right:-20px;}.help{position:absolute;top:40px;right:40px;width:25px;height:25px;text-align:center;font-size:13px;line-height:27px;font-weight:bold;cursor:pointer;background:#fff;color:#79a8ae;opacity:.9;-webkit-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-moz-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-ms-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-o-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);}.help:hover{opacity:1;}.overlay{position:absolute;top:50%;left:50%;width:550px;height:490px;margin:-260px 0 0 -275px;opacity:0;-webkit-transform:rotateY(90deg);-moz-transform:rotateY(90deg);-ms-transform:rotateY(90deg);-o-transform:rotateY(90deg);transform:rotateY(90deg);}.overlay--visible{opacity:1;-webkit-transform:rotateY(0);-moz-transform:rotateY(0);-ms-transform:rotateY(0);-o-transform:rotateY(0);transform:rotateY(0);}.ui-share,.ui-details{opacity:.9;background:#fff;z-index:2;}.ui-details-content,.ui-share-content{padding:100px 50px;}.commands{margin:0;padding:0;list-style:none;cursor:pointer;}.commands-item{font-size:12px;line-height:22px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;padding:20px;background:#fff;margin-top:1px;color:#333;opacity:.9;-webkit-transition:-webkit-transform 0.7s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-moz-transition:-moz-transform 0.1s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-ms-transition:-ms-transform 0.1s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-o-transition:-o-transform 0.1s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);transition:transform 0.1s cubic-bezier(0.694,0.0482,0.335,1),opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);}.commands-item--gap{margin-top:9px;}.commands-item:hover{opacity:1;}.commands-item:hover .commands-item-action{background:#333;}.commands-item a{display:inline-block;}.commands-item-mode{display:inline-block;margin-left:3px;font-style:italic;color:#ccc;}.commands-item-title{display:inline-block;width:150px;}.commands-item-info{display:inline-block;width:300px;font-size:14px;text-transform:none;letter-spacing:0;font-weight:normal;color:#aaa;}.commands-item-action{display:inline-block;float:right;margin-top:3px;text-transform:uppercase;font-size:10px;line-height:10px;color:#fff;background:#90c9d1;padding:5px 10px 4px 10px;border-radius:3px;}.commands-item:first-child{margin-top:0;}.twitter-share{position:absolute;top:4px;right:20px;}.tabs-labels{margin-bottom:9px;}.tabs-label{display:inline-block;background:#fff;padding:10px 20px;font-size:12px;line-height:22px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;color:#333;opacity:.5;cursor:pointer;margin-right:2px;-webkit-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-moz-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-ms-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);-o-transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);transition:opacity 0.1s cubic-bezier(0.694,0.0482,0.335,1);}.tabs-label:hover{opacity:.9;}.tabs-label--active{opacity:.9;}.tabs-panel{display:none;}.tabs-panel--active{display:block;}.tab-panel{position:absolute;top:0;left:0;width:100%;}.touch .ui-input{display:none;}</style>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一代码农也有闷骚情怀">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quinn">
+<meta property="og:url" content="http://liang10294036.github.io/index.html">
+<meta property="og:site_name" content="Quinn">
+<meta property="og:description" content="一代码农也有闷骚情怀">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Quinn">
+<meta name="twitter:description" content="一代码农也有闷骚情怀">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liang10294036.github.io/"/>
+
+
+
+
+
+  <title>Quinn</title>
+  
+
+
+
+
+
+
+
 
 </head>
 
-<body>
-<!-- <audio src="1.mp3" autoplay></audio> -->
-<canvas class="canvas"></canvas><div class="help" style="display:none;">?</div>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-<div class="ui" style="display:none;"><input class="ui-input" type="text"/></div><div class="overlay"><div class="tabs"><div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span class="tabs-label">Share</span></div><div class="tabs-panels"><ul class="tabs-panel commands"></ul>
+  
+  
+    
+  
 
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Quinn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">lkk's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/06/07/Kotlin-属性语法-Getters和Setters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/07/Kotlin-属性语法-Getters和Setters/" itemprop="url">Kotlin 属性语法 Getters和Setters</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T11:12:32+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>kotlin属性声明有两个关键字</p>
+<ul>
+<li>var: 声明为可变属性，可以延迟加载初始值，可以修改变量属性的值，与Java声明变量类似</li>
+<li>val: 声明为只读属性, 声明时必须赋初始值并且不能修改，相当于Java中的final</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name : <span class="built_in">String</span>? = <span class="literal">null</span></span><br><span class="line">lateinit <span class="keyword">var</span> addrees : <span class="built_in">String</span> <span class="comment">// 延迟初始化</span></span><br><span class="line">val id : <span class="built_in">String</span> = <span class="string">"123456789"</span></span><br></pre></td></tr></table></figure>
+<p>声明一个属性的完整语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &lt;propertyName&gt;[: &lt;PropertyType&gt;] [= &lt;property_initializer&gt;]</span><br><span class="line">    [&lt;getter&gt;]</span><br><span class="line">    [&lt;setter&gt;]</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/07/Kotlin-属性语法-Getters和Setters/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/05/14/Kotlin-使用命令行编译/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/14/Kotlin-使用命令行编译/" itemprop="url">Kotlin 使用命令行编译</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-14T14:04:59+08:00">
+                2018-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://github.com/JetBrains/kotlin" target="_blank" rel="noopener">JetBrains-Kotlin</a></p>
+<p><a href="https://try.kotlinlang.org/#/Examples/Hello,%20world!/Simplest%20version/Simplest%20version.kt" target="_blank" rel="noopener">Kotlin在线运行及代码演示</a></p>
+<p>studio 运行kotlin每次都要启动程序 着实不爽，在线执行时常崩溃， 于是便想起命令行的方式， 类似pathon在在终端执行文件以及直接运行代码</p>
+<p>本地终端执行</p>
+<h3 id="widows-安装"><a href="#widows-安装" class="headerlink" title="widows 安装"></a>widows 安装</h3><p>Kotlin 命令行编译工具下载地址：<a href="https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-2" target="_blank" rel="noopener">https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-2</a>，目前最新为 1.1.2-2。<br>下载完成后，解压到指定目录，然后将 bin 目录添加到系统环境变量。bin 目录包含编译和运行 Kotlin 所需的脚本。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/14/Kotlin-使用命令行编译/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/05/01/python-高阶函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/01/python-高阶函数/" itemprop="url">python 高阶函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-01T17:26:11+08:00">
+                2018-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文记录python内建几个函数特性 map、reduce、filter、sorted</p>
+<h2 id="map-reduce"><a href="#map-reduce" class="headerlink" title="map/reduce"></a>map/reduce</h2><p>map函数有两个参数，第一个参数是一个自定义函数， 第二个参数是序列(list 或者 tuple)，返回第二个参数的处理结果(即list或tuple)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;&gt;&gt; def fun(x):</span><br><span class="line">...     return x *x</span><br><span class="line">...</span><br><span class="line">&gt;&gt;&gt; map(fun, range(<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</span><br></pre></td></tr></table></figure></p>
+<p>列表中的每一个元素会逐一传递到fun函数中并且逐一返回， 当然用循环体也可以达到同样的效果，不过一行代码就能搞定这就够让我使用的冲动了</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/01/python-高阶函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/04/18/python中的list、tuple、dict、set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/18/python中的list、tuple、dict、set/" itemprop="url">python中的list、tuple、dict、set</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T15:14:51+08:00">
+                2018-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="list-列表"><a href="#list-列表" class="headerlink" title="list(列表)"></a>list(列表)</h2><h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>属于python内置的一种数据类型。list是一种有序集合，是python中最常见的数据类型。可以任意添加和删除其中的元素，索引从0开始。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list1 = [<span class="string">'Tom'</span>, <span class="string">'Alice'</span>, <span class="string">'Kevin'</span>, <span class="string">'Bill'</span>]</span><br><span class="line">&gt;&gt;&gt; list1</span><br><span class="line">[<span class="string">'Tom'</span>, <span class="string">'Alice'</span>, <span class="string">'Kevin'</span>, <span class="string">'Bill'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>也可以不同类型组合<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list2 = [<span class="string">'Tome'</span>, <span class="number">20</span>, True, <span class="number">23.2</span>]</span><br><span class="line">&gt;&gt;&gt; list2</span><br><span class="line">[<span class="string">'Tome'</span>, <span class="number">20</span>, True, <span class="number">23.2</span>]</span><br></pre></td></tr></table></figure></p>
+<p>获取list集合的长度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; len(list1)</span><br><span class="line"><span class="number">4</span></span><br><span class="line">&gt;&gt;&gt; len(list2)</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>组合<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list1 + list2</span><br><span class="line">[<span class="string">'Tom'</span>, <span class="string">'Alice'</span>, <span class="string">'Kevin'</span>, <span class="string">'Bill'</span>, <span class="string">'Tome'</span>, <span class="number">20</span>, True, <span class="number">23.2</span>]</span><br></pre></td></tr></table></figure></p>
+<p>重复<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list1 * 3</span><br><span class="line">[&apos;Tom&apos;, &apos;Alice&apos;, &apos;Kevin&apos;, &apos;Bill&apos;, &apos;Tom&apos;, &apos;Alice&apos;, &apos;Kevin&apos;, &apos;Bill&apos;, &apos;Tom&apos;, &apos;Alice&apos;, &apos;Kevin&apos;, &apos;Bill&apos;]</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/18/python中的list、tuple、dict、set/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liang10294036.github.io/2018/04/09/flex使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/09/flex使用/" itemprop="url">flex使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T16:28:01+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记录/" itemprop="url" rel="index">
+                    <span itemprop="name">记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="介绍flex"><a href="#介绍flex" class="headerlink" title="介绍flex"></a>介绍flex</h2><p>2009年，W3C 提出了一种新的方案—–Flex布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能<br>flex是Flexible Box的缩写， 意思是“弹性布局”，用来为盒子模型提供最大的灵活性。<br>任何一个容器都可以指定为flex布局<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display: flex;</span><br></pre></td></tr></table></figure></p>
+<p>行内元素也可以使用flex布局<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display: inline-flex;</span><br></pre></td></tr></table></figure></p>
+<p>Webkit内核的浏览器，必须加上-webkit前缀.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display: -webkit-flex; <span class="comment">/* Safari */</span></span><br><span class="line">display: flex;</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/09/flex使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="lkk" />
+            
+              <p class="site-author-name" itemprop="name">lkk</p>
+              <p class="site-description motion-element" itemprop="description">一代码农也有闷骚情怀</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liang10294036" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:laingkk4036@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/117402218699572329530" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100009676295987" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lkk</span>
+
+  
 </div>
 
-</div>
-
-
-<div style="text-align:center" >
-
-<iframe fameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="1.mp3"></iframe></div>
 
 
 
 
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
 
 <script type="text/javascript">
-
-var S={init:function(){var action=window.location.href,i=action.indexOf('?a=');S.Drawing.init('.canvas');document.body.classList.add('body--ready');if(i!==-1){S.UI.simulate(decodeURI(action).substring(i+ 3));}else{S.UI.simulate('李佳佳 我爱你|与你一见如故|今生你是我最美的相遇|时光不老|我们不散|无论阳光|无论泥泞|无论贫富|无论苦乐|相爱相依|相守相伴|持子之手与子偕老|最亲爱的老婆|我的心里只有你❤|#show',3000);}
-
-S.Drawing.loop(function(){S.Shape.render();});}};S.Drawing=(function(){var canvas,context,renderFn
-
-requestFrame=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(callback){window.setTimeout(callback,1000/60);};return{init:function(el){canvas=document.querySelector(el);context=canvas.getContext('2d');this.adjustCanvas();window.addEventListener('resize',function(e){S.Drawing.adjustCanvas();});},loop:function(fn){renderFn=!renderFn?fn:renderFn;this.clearFrame();renderFn();requestFrame.call(window,this.loop.bind(this));},adjustCanvas:function(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;},clearFrame:function(){context.clearRect(0,0,canvas.width,canvas.height);},getArea:function(){return{w:canvas.width,h:canvas.height};},drawCircle:function(p,c){context.fillStyle=c.render();context.beginPath();context.arc(p.x,p.y,p.z,0,2*Math.PI,true);context.closePath();context.fill();}}}());S.UI=(function(){var input=document.querySelector('.ui-input'),ui=document.querySelector('.ui'),help=document.querySelector('.help'),commands=document.querySelector('.commands'),overlay=document.querySelector('.overlay'),canvas=document.querySelector('.canvas'),interval,isTouch=false,currentAction,resizeTimer,time,maxShapeSize=30,firstAction=true,sequence=[],cmd='#';function formatTime(date){var h=date.getHours(),m=date.getMinutes(),m=m<10?'0'+ m:m;return h+':'+ m;}
-
-function getValue(value){return value&&value.split(' ')[1];};function getAction(value){value=value&&value.split(' ')[0];return value&&value[0]===cmd&&value.substring(1);}
-
-function timedAction(fn,delay,max,reverse){clearInterval(interval);currentAction=reverse?max:1;fn(currentAction);if(!max||(!reverse&&currentAction<max)||(reverse&&currentAction>0)){interval=setInterval(function(){currentAction=reverse?currentAction- 1:currentAction+ 1;fn(currentAction);if((!reverse&&max&&currentAction===max)||(reverse&&currentAction===0)){clearInterval(interval);}},delay);}}
-
-function reset(destroy){clearInterval(interval);sequence=[];time=null;destroy&&S.Shape.switchShape(S.ShapeBuilder.letter(''));}
-
-function performAction(value,tsp){var action,value,current;overlay.classList.remove('overlay--visible');sequence=typeof(value)==='object'?value:sequence.concat(value.split('|'));input.value='';checkInputWidth();timedAction(function(index){current=sequence.shift();action=getAction(current);value=getValue(current);switch(action){case'countdown':value=parseInt(value)||10;value=value>0?value:10;timedAction(function(index){if(index===0){if(sequence.length===0){S.Shape.switchShape(S.ShapeBuilder.letter(''));}else{performAction(sequence);}}else{S.Shape.switchShape(S.ShapeBuilder.letter(index),true);}},1000,value,true);break;case'rectangle':value=value&&value.split('x');value=(value&&value.length===2)?value:[maxShapeSize,maxShapeSize/2];S.Shape.switchShape(S.ShapeBuilder.rectangle(Math.min(maxShapeSize,parseInt(value[0])),Math.min(maxShapeSize,parseInt(value[1]))));break;case'circle':value=parseInt(value)||maxShapeSize;value=Math.min(value,maxShapeSize);S.Shape.switchShape(S.ShapeBuilder.circle(value));break;case'time':var t=formatTime(new Date());if(sequence.length>0){S.Shape.switchShape(S.ShapeBuilder.letter(t));}else{timedAction(function(){t=formatTime(new Date());if(t!==time){time=t;S.Shape.switchShape(S.ShapeBuilder.letter(time));}},1000);}
-
-break;case'show':show();break;default:S.Shape.switchShape(S.ShapeBuilder.letter(current[0]===cmd?'What?':current));}},tsp,sequence.length);}
-
-function checkInputWidth(e){if(input.value.length>18){ui.classList.add('ui--wide');}else{ui.classList.remove('ui--wide');}
-
-if(firstAction&&input.value.length>0){ui.classList.add('ui--enter');}else{ui.classList.remove('ui--enter');}}
-
-function bindEvents(){document.body.addEventListener('keydown',function(e){input.focus();if(e.keyCode===13){firstAction=false;reset();performAction(input.value,3000);}});input.addEventListener('input',checkInputWidth);input.addEventListener('change',checkInputWidth);input.addEventListener('focus',checkInputWidth);help.addEventListener('click',function(e){overlay.classList.toggle('overlay--visible');overlay.classList.contains('overlay--visible')&&reset(true);});commands.addEventListener('click',function(e){var el,info,demo,tab,active,url;if(e.target.classList.contains('commands-item')){el=e.target;}else{el=e.target.parentNode.classList.contains('commands-item')?e.target.parentNode:e.target.parentNode.parentNode;}
-
-info=el&&el.querySelector('.commands-item-info');demo=el&&info.getAttribute('data-demo');url=el&&info.getAttribute('data-url');if(info){overlay.classList.remove('overlay--visible');if(demo){input.value=demo;if(isTouch){reset();performAction(input.value,3000);}else{input.focus();}}else if(url){}}});canvas.addEventListener('click',function(e){overlay.classList.remove('overlay--visible');});}
-
-function init(){bindEvents();input.focus();isTouch&&document.body.classList.add('touch');}
-
-init();return{simulate:function(action,tsp){performAction(action,tsp);}}}());S.UI.Tabs=(function(){var tabs=document.querySelector('.tabs'),labels=document.querySelector('.tabs-labels'),triggers=document.querySelectorAll('.tabs-label'),panels=document.querySelectorAll('.tabs-panel');function activate(i){triggers[i].classList.add('tabs-label--active');panels[i].classList.add('tabs-panel--active');}
-
-function bindEvents(){labels.addEventListener('click',function(e){var el=e.target,index;if(el.classList.contains('tabs-label')){for(var t=0;t<triggers.length;t++){triggers[t].classList.remove('tabs-label--active');panels[t].classList.remove('tabs-panel--active');if(el===triggers[t]){index=t;}}
-
-activate(index);}});}
-
-function init(){activate(0);bindEvents();}
-
-init();}());S.Point=function(args){this.x=args.x;this.y=args.y;this.z=args.z;this.a=args.a;this.h=args.h;};S.Color=function(r,g,b,a){this.r=r;this.g=g;this.b=b;this.a=a;};S.Color.prototype={render:function(){return'rgba('+ this.r+','+ +this.g+','+ this.b+','+ this.a+')';}};S.Dot=function(x,y){this.p=new S.Point({x:x,y:y,z:5,a:1,h:0});this.e=0.07;this.s=true;this.c=new S.Color(255,255,255,this.p.a);this.t=this.clone();this.q=[];};S.Dot.prototype={clone:function(){return new S.Point({x:this.x,y:this.y,z:this.z,a:this.a,h:this.h});},_draw:function(){this.c.a=this.p.a;S.Drawing.drawCircle(this.p,this.c);},_moveTowards:function(n){var details=this.distanceTo(n,true),dx=details[0],dy=details[1],d=details[2],e=this.e*d;if(this.p.h===-1){this.p.x=n.x;this.p.y=n.y;return true;}
-
-if(d>1){this.p.x-=((dx/d)*e);this.p.y-=((dy/d)*e);}else{if(this.p.h>0){this.p.h--;}else{return true;}}
-
-return false;},_update:function(){if(this._moveTowards(this.t)){var p=this.q.shift();if(p){this.t.x=p.x||this.p.x;this.t.y=p.y||this.p.y;this.t.z=p.z||this.p.z;this.t.a=p.a||this.p.a;this.p.h=p.h||0;}else{if(this.s){this.p.x-=Math.sin(Math.random()*3.142);this.p.y-=Math.sin(Math.random()*3.142);}else{this.move(new S.Point({x:this.p.x+(Math.random()*50)- 25,y:this.p.y+(Math.random()*50)- 25,}));}}}
-
-d=this.p.a- this.t.a;this.p.a=Math.max(0.1,this.p.a-(d*0.05));d=this.p.z- this.t.z;this.p.z=Math.max(1,this.p.z-(d*0.05));},distanceTo:function(n,details){var dx=this.p.x- n.x,dy=this.p.y- n.y,d=Math.sqrt(dx*dx+ dy*dy);return details?[dx,dy,d]:d;},move:function(p,avoidStatic){if(!avoidStatic||(avoidStatic&&this.distanceTo(p)>1)){this.q.push(p);}},render:function(){this._update();this._draw();}}
-
-S.ShapeBuilder=(function(){var gap=13,shapeCanvas=document.createElement('canvas'),shapeContext=shapeCanvas.getContext('2d'),fontSize=500,fontFamily='Avenir, Helvetica Neue, Helvetica, Arial, sans-serif';function fit(){shapeCanvas.width=Math.floor(window.innerWidth/gap)*gap;shapeCanvas.height=Math.floor(window.innerHeight/gap)*gap;shapeContext.fillStyle='red';shapeContext.textBaseline='middle';shapeContext.textAlign='center';}
-
-function processCanvas(){var pixels=shapeContext.getImageData(0,0,shapeCanvas.width,shapeCanvas.height).data;dots=[],pixels,x=0,y=0,fx=shapeCanvas.width,fy=shapeCanvas.height,w=0,h=0;for(var p=0;p<pixels.length;p+=(4*gap)){if(pixels[p+ 3]>0){dots.push(new S.Point({x:x,y:y}));w=x>w?x:w;h=y>h?y:h;fx=x<fx?x:fx;fy=y<fy?y:fy;}
-
-x+=gap;if(x>=shapeCanvas.width){x=0;y+=gap;p+=gap*4*shapeCanvas.width;}}
-
-return{dots:dots,w:w+ fx,h:h+ fy};}
-
-function setFontSize(s){shapeContext.font='bold '+ s+'px '+ fontFamily;}
-
-function isNumber(n){return!isNaN(parseFloat(n))&&isFinite(n);}
-
-function init(){fit();window.addEventListener('resize',fit);}
-
-init();return{imageFile:function(url,callback){var image=new Image();var a=S.Drawing.getArea();image.onload=function(){shapeContext.clearRect(0,0,shapeCanvas.width,shapeCanvas.height);shapeContext.drawImage(this,0,0,a.h*0.6,a.h*0.6);callback(processCanvas());};image.onerror=function(){callback(S.ShapeBuilder.letter('What?'));}
-
-image.src=url;},circle:function(d){var r=Math.max(0,d)/ 2;
-
-shapeContext.clearRect(0,0,shapeCanvas.width,shapeCanvas.height);shapeContext.beginPath();shapeContext.arc(r*gap,r*gap,r*gap,0,2*Math.PI,false);shapeContext.fill();shapeContext.closePath();return processCanvas();},letter:function(l){var s=0;setFontSize(fontSize);s=Math.min(fontSize,(shapeCanvas.width/shapeContext.measureText(l).width)*0.8*fontSize,(shapeCanvas.height/fontSize)*(isNumber(l)?1:0.45)*fontSize);setFontSize(s);shapeContext.clearRect(0,0,shapeCanvas.width,shapeCanvas.height);shapeContext.fillText(l,shapeCanvas.width/2,shapeCanvas.height/2);return processCanvas();},rectangle:function(w,h){var dots=[],width=gap*w,height=gap*h;for(var y=0;y<height;y+=gap){for(var x=0;x<width;x+=gap){dots.push(new S.Point({x:x,y:y,}));}}
-
-return{dots:dots,w:width,h:height};}};}());S.Shape=(function(){var dots=[],width=0,height=0,cx=0,cy=0;function compensate(){var a=S.Drawing.getArea();cx=a.w/2- width/2;cy=a.h/2- height/2;}
-
-return{shuffleIdle:function(){var a=S.Drawing.getArea();for(var d=0;d<dots.length;d++){if(!dots[d].s){dots[d].move({x:Math.random()*a.w,y:Math.random()*a.h});}}},switchShape:function(n,fast){var size,a=S.Drawing.getArea();width=n.w;height=n.h;compensate();if(n.dots.length>dots.length){size=n.dots.length- dots.length;for(var d=1;d<=size;d++){dots.push(new S.Dot(a.w/2,a.h/2));}}
-
-var d=0,i=0;while(n.dots.length>0){i=Math.floor(Math.random()*n.dots.length);dots[d].e=fast?0.25:(dots[d].s?0.14:0.11);if(dots[d].s){dots[d].move(new S.Point({z:Math.random()*20+ 10,a:Math.random(),h:18}));}else{dots[d].move(new S.Point({z:Math.random()*5+ 5,h:fast?18:30}));}
-
-dots[d].s=true;dots[d].move(new S.Point({x:n.dots[i].x+ cx,y:n.dots[i].y+ cy,a:1,z:5,h:0}));n.dots=n.dots.slice(0,i).concat(n.dots.slice(i+ 1));d++;}
-
-for(var i=d;i<dots.length;i++){if(dots[i].s){dots[i].move(new S.Point({z:Math.random()*20+ 10,a:Math.random(),h:20}));dots[i].s=false;dots[i].e=0.04;dots[i].move(new S.Point({x:Math.random()*a.w,y:Math.random()*a.h,a:0.3,z:Math.random()*4,h:0}));}}},render:function(){for(var d=0;d<dots.length;d++){dots[d].render();}}}}());S.init();
-
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
-</body>
 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
 </html>
