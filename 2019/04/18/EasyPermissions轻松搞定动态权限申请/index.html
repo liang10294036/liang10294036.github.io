@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作 相关文档GitHub地址easypermissions Google官网介绍在运行时请求权限 使用步骤添">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EasyPermissions轻松搞定动态权限申请">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/EasyPermissions轻松搞定动态权限申请/index.html">
+<meta property="og:site_name" content="Quinn">
+<meta property="og:description" content="android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作 相关文档GitHub地址easypermissions Google官网介绍在运行时请求权限 使用步骤添">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-18T07:41:53.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EasyPermissions轻松搞定动态权限申请">
+<meta name="twitter:description" content="android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作 相关文档GitHub地址easypermissions Google官网介绍在运行时请求权限 使用步骤添">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/EasyPermissions轻松搞定动态权限申请/">
+
+
+
+
+
+  <title>EasyPermissions轻松搞定动态权限申请 | Quinn</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Quinn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">lkk's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archives"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/EasyPermissions轻松搞定动态权限申请/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">EasyPermissions轻松搞定动态权限申请</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T15:30:04+08:00">
+                2019-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/18/EasyPermissions轻松搞定动态权限申请/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/18/EasyPermissions轻松搞定动态权限申请/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作</p>
+<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><p>GitHub地址<br><a href="https://github.com/googlesamples/easypermissions" target="_blank" rel="noopener">easypermissions</a></p>
+<p>Google官网介绍<br><a href="https://developer.android.com/training/permissions/requesting.html" target="_blank" rel="noopener">在运行时请求权限</a></p>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// For developers using AndroidX in their applications</span></span><br><span class="line">    implementation <span class="string">'pub.devrel:easypermissions:3.0.0'</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// For developers using the Android Support Library</span></span><br><span class="line">    implementation <span class="string">'pub.devrel:easypermissions:2.0.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="检查运行时读写权限"><a href="#检查运行时读写权限" class="headerlink" title="检查运行时读写权限"></a>检查运行时读写权限</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EasyPermissions.hasPermissions(<span class="keyword">this</span>, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>这一步很好理解检查我们需要的权限是否已经授权，废话不多说直接上源码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Check if the calling context has a set of permissions.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* @param context the calling context.</span></span><br><span class="line"><span class="comment">* @param perms   one ore more permissions, such as &#123;@link Manifest.permission#CAMERA&#125;.</span></span><br><span class="line"><span class="comment">* @return true if all permissions are already granted, false if at least one permission is not</span></span><br><span class="line"><span class="comment">* yet granted.</span></span><br><span class="line"><span class="comment">* @see Manifest.permission</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">static</span> boolean hasPermissions(@NonNull Context context,</span><br><span class="line">    @Size(min = <span class="number">1</span>) @NonNull <span class="built_in">String</span>... perms) &#123;</span><br><span class="line">    <span class="comment">// Always return true for SDK &lt; M, let the system deal with the permissions</span></span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.M) &#123;</span><br><span class="line">        Log.w(TAG, <span class="string">"hasPermissions: API version &lt; M, returning true by default"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// DANGER ZONE!!! Changing this will break the library.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Null context may be passed if we have detected Low API (less than M) so getting</span></span><br><span class="line">    <span class="comment">// to this point with a null context should not be possible.</span></span><br><span class="line">    <span class="keyword">if</span> (context == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Can't check permissions for null context"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">String</span> perm : perms) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ContextCompat.checkSelfPermission(context, perm)</span><br><span class="line">        != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先我们来看看参数 context 上下文为空直接抛出IllegalArgumentException异常需要注意<br>从Java 5开始，Java语言对方法参数支持一种新写法，叫可变长度参数列表就是我们的第二个参数String… 类似String[]这种形式非常实用, 延展性更强, 返回boolean值不用多想ture就是权限已经拿到false就是要申请权限了</p>
+<h3 id="申请权限"><a href="#申请权限" class="headerlink" title="申请权限"></a>申请权限</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">EasyPermissions.requestPermissions(</span><br><span class="line"><span class="keyword">this</span>,</span><br><span class="line"><span class="string">"需要访问读写权限"</span>,</span><br><span class="line">RC_READ_PERM,</span><br><span class="line">Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br></pre></td></tr></table></figure>
+<p>分析下这步操作需要的四个参数</p>
+<ol>
+<li>activity 用它来构建一个PermissionHelper，这个是干嘛的等后面看源码的时候细细分析</li>
+<li>这个是请求弹窗中给用户的提示语</li>
+<li>这个请求code 用来追踪权限请求，后面我们收到权限会用它来判断</li>
+<li>可变长度参数可申请多个权限（一组权限）</li>
+</ol>
+<p>源码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Request a set of permissions, showing a rationale if the system requests it.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* @param host        requesting context.</span></span><br><span class="line"><span class="comment">* @param rationale   a message explaining why the application needs this set of permissions;</span></span><br><span class="line"><span class="comment">*                    will be displayed if the user rejects the request the first time.</span></span><br><span class="line"><span class="comment">* @param requestCode request code to track this request, must be &amp;lt; 256.</span></span><br><span class="line"><span class="comment">* @param perms       a set of permissions to be requested.</span></span><br><span class="line"><span class="comment">* @see Manifest.permission</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">static</span> <span class="keyword">void</span> requestPermissions(</span><br><span class="line">@NonNull Activity host, @NonNull <span class="built_in">String</span> rationale,</span><br><span class="line">    int requestCode, @Size(min = <span class="number">1</span>) @NonNull <span class="built_in">String</span>... perms) &#123;</span><br><span class="line">        requestPermissions(</span><br><span class="line">        <span class="keyword">new</span> PermissionRequest.Builder(host, requestCode, perms)</span><br><span class="line">        .setRationale(rationale)</span><br><span class="line">        .build());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package etcp.payment.machine.easypermissions;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Construct a new permission request builder with a host, request code, and the requested</span></span><br><span class="line"><span class="comment">* permissions.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* @param activity    the permission request host</span></span><br><span class="line"><span class="comment">* @param requestCode request code to track this request; must be &amp;lt; 256</span></span><br><span class="line"><span class="comment">* @param perms       the set of permissions to be requested</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public Builder(@NonNull Activity activity, int requestCode,</span><br><span class="line">    @NonNull @Size(min = <span class="number">1</span>) <span class="built_in">String</span>... perms) &#123;</span><br><span class="line">        mHelper = PermissionHelper.newInstance(activity);</span><br><span class="line">        mRequestCode = requestCode;</span><br><span class="line">        mPerms = perms;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来我们分析下 PermissionHelper</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private final PermissionHelper mHelper;</span><br></pre></td></tr></table></figure>
+<p>这是一个抽象类下面四个抽象函数 分别是：请求权限/检查权限是否被永久拒绝/弹出权限交互对话框/获取上下文,</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//请求权限</span></span><br><span class="line">public abstract <span class="keyword">void</span> directRequestPermissions(int requestCode, @NonNull <span class="built_in">String</span>... perms);</span><br><span class="line"><span class="comment">//检查权限是否被永久拒绝</span></span><br><span class="line">public abstract boolean shouldShowRequestPermissionRationale(@NonNull <span class="built_in">String</span> perm);</span><br><span class="line"><span class="comment">//弹出权限交互对话框</span></span><br><span class="line">public abstract <span class="keyword">void</span> showRequestPermissionRationale(@NonNull <span class="built_in">String</span> rationale,</span><br><span class="line">    @NonNull <span class="built_in">String</span> positiveButton,</span><br><span class="line">    @NonNull <span class="built_in">String</span> negativeButton,</span><br><span class="line">    @StyleRes int theme,</span><br><span class="line">    int requestCode,</span><br><span class="line">    @NonNull <span class="built_in">String</span>... perms);</span><br><span class="line">获取上下文</span><br><span class="line">public abstract Context getContext();</span><br></pre></td></tr></table></figure>
+<p>有了这个抽象类我们就明白Easypermissons内部是怎么工作的了。</p>
+<h3 id="请求权限结果回调"><a href="#请求权限结果回调" class="headerlink" title="请求权限结果回调"></a>请求权限结果回调</h3><p>easypermissions的权限回调需要我们把系统的回调结果交给它好让它为我们做简化处理，我们只需在onRequestPermissionsResult的回调中加入一行，如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> onRequestPermissionsResult(int requestCode, @NonNull <span class="built_in">String</span>[] permissions, @NonNull int[] grantResults) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">    EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, <span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前三个参数对应传递，最后一个是接口用来把处理结果回调给我们</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Callback interface to receive the results of &#123;@code EasyPermissions.requestPermissions()&#125;</span></span><br><span class="line"><span class="comment">* calls.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public interface PermissionCallbacks extends ActivityCompat.OnRequestPermissionsResultCallback &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> onPermissionsGranted(int requestCode, @NonNull List&lt;<span class="built_in">String</span>&gt; perms);</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> onPermissionsDenied(int requestCode, @NonNull List&lt;<span class="built_in">String</span>&gt; perms);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>onPermissionsGranted权限被同意。</li>
+<li>requestpermissions() 权限被拒绝</li>
+</ol>
+<p>如果要知道这个拒绝是否被用户勾选为不再询问的话，这就的需要下面这个函数来判断了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EasyPermissions.somePermissionPermanentlyDenied(<span class="keyword">this</span>, perms));</span><br></pre></td></tr></table></figure>
+<p>这个函数其实就是调用的我们前面讲到的的抽象类PermissionHelper中的抽象函数shouldShowRequestPermissionRationale<br>源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Check if at least one permission in the list of denied permissions has been permanently</span></span><br><span class="line"><span class="comment">* denied (user clicked "Never ask again").</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* @param host              context requesting permissions.</span></span><br><span class="line"><span class="comment">* @param deniedPermissions list of denied permissions, usually from &#123;@link</span></span><br><span class="line"><span class="comment">*                          PermissionCallbacks#onPermissionsDenied(int, List)&#125;</span></span><br><span class="line"><span class="comment">* @return &#123;@code true&#125; if at least one permission in the list was permanently denied.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">public <span class="keyword">static</span> boolean somePermissionPermanentlyDenied(@NonNull Activity host,</span><br><span class="line">@NonNull List&lt;<span class="built_in">String</span>&gt; deniedPermissions) &#123;</span><br><span class="line">    <span class="keyword">return</span> PermissionHelper.newInstance(host)</span><br><span class="line">        .somePermissionPermanentlyDenied(deniedPermissions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>下面是我自己写的例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">StartActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="title">implements</span> <span class="title">EasyPermissions</span>.<span class="title">PermissionCallbacks</span></span>&#123;</span><br><span class="line"></span><br><span class="line">private final int RC_READ_PERM = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_start);</span><br><span class="line">    execPermission();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">protected <span class="keyword">void</span> execPermission() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (EasyPermissions.hasPermissions(<span class="keyword">this</span>, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) &#123;</span><br><span class="line">            <span class="comment">// 已经获取到权限</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 未获取到权限 执行权限请求</span></span><br><span class="line">        EasyPermissions.requestPermissions(</span><br><span class="line">        <span class="keyword">this</span>,</span><br><span class="line">        <span class="string">"需要访问读写权限"</span>,</span><br><span class="line">        RC_READ_PERM,</span><br><span class="line">        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> onRequestPermissionsResult(int requestCode, @NonNull <span class="built_in">String</span>[] permissions, @NonNull int[] grantResults) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">    EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, <span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> onPermissionsGranted(int requestCode, @NonNull List&lt;<span class="built_in">String</span>&gt; perms) &#123;</span><br><span class="line">    <span class="keyword">if</span> (requestCode == RC_READ_PERM &amp;&amp; EasyPermissions.hasPermissions(<span class="keyword">this</span>,             Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) &#123;</span><br><span class="line">        startActivity(WebScriptActivity.getIntent(StartActivity.this));</span><br><span class="line">        finish();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> onPermissionsDenied(int requestCode, @NonNull List&lt;<span class="built_in">String</span>&gt; perms) &#123;</span><br><span class="line">    <span class="keyword">if</span> (EasyPermissions.somePermissionPermanentlyDenied(<span class="keyword">this</span>, perms)) &#123; <span class="comment">// 权限被勾选为不再询问</span></span><br><span class="line">        Toast.makeText(<span class="keyword">this</span>, <span class="string">"需要访问读写权限"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="lkk 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="lkk 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/Mac-OS-10-11解决Operation-not-permitted-usr-bin/" rel="next" title="Mac OS 10.11解决Operation not permitted - /usr/bin/">
+                <i class="fa fa-chevron-left"></i> Mac OS 10.11解决Operation not permitted - /usr/bin/
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/任务串行-非阻塞队列-线程锁和阻塞队列/" rel="prev" title="任务串行-非阻塞队列+线程锁和阻塞队列">
+                任务串行-非阻塞队列+线程锁和阻塞队列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="lkk">
+            
+              <p class="site-author-name" itemprop="name">lkk</p>
+              <p class="site-description motion-element" itemprop="description">一代码农也有闷骚情怀</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liang10294036" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/yourname" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100009676295987" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关文档"><span class="nav-number">1.</span> <span class="nav-text">相关文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用步骤"><span class="nav-number">2.</span> <span class="nav-text">使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加依赖"><span class="nav-number">2.1.</span> <span class="nav-text">添加依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查运行时读写权限"><span class="nav-number">2.2.</span> <span class="nav-text">检查运行时读写权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#申请权限"><span class="nav-number">2.3.</span> <span class="nav-text">申请权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求权限结果回调"><span class="nav-number">2.4.</span> <span class="nav-text">请求权限结果回调</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例"><span class="nav-number">3.</span> <span class="nav-text">案例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lkk</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://lkk.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/04/18/EasyPermissions轻松搞定动态权限申请/';
+          this.page.identifier = '2019/04/18/EasyPermissions轻松搞定动态权限申请/';
+          this.page.title = 'EasyPermissions轻松搞定动态权限申请';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://lkk.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
