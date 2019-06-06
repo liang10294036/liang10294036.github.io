@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="other,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速  服务器首先需要购买国外服务器，我这里使用Virmach目前我找到的支持Al">
+<meta name="keywords" content="other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="脚本搭建SSR服务&lt;virmach&gt;">
+<meta property="og:url" content="http://yoursite.com/2019/06/06/脚本搭建SSR服务-virmach/index.html">
+<meta property="og:site_name" content="Quinn">
+<meta property="og:description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速  服务器首先需要购买国外服务器，我这里使用Virmach目前我找到的支持Al">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559790719854.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559791257949.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/vi2.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/vi3.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/vi33.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/vi4.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559791781746.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559792210370.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559792412609.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559792598114.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559792746964.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/1559792868460.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr2.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr3.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr4.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr5.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr6.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr7.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr8.jpg">
+<meta property="og:image" content="http://yoursite.com/picture/virmach/ssr9.jpg">
+<meta property="og:updated_time" content="2019-06-06T04:43:36.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="脚本搭建SSR服务&lt;virmach&gt;">
+<meta name="twitter:description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速  服务器首先需要购买国外服务器，我这里使用Virmach目前我找到的支持Al">
+<meta name="twitter:image" content="http://yoursite.com/picture/virmach/1559790719854.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/06/脚本搭建SSR服务-virmach/">
+
+
+
+
+
+  <title>脚本搭建SSR服务<virmach> | Quinn</virmach></title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Quinn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">lkk's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/06/脚本搭建SSR服务-virmach/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">脚本搭建SSR服务<virmach></virmach></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-06T10:27:22+08:00">
+                2019-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记录/" itemprop="url" rel="index">
+                    <span itemprop="name">记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/06/脚本搭建SSR服务-virmach/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/06/脚本搭建SSR服务-virmach/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！</p>
+<p>准备：</p>
+<ol>
+<li>国外服务器</li>
+<li>ssh 远程连接服务器</li>
+<li>shadowsocksX客户端 <a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="noopener">MAC</a> <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">Windows</a></li>
+<li>补充：bbr加速</li>
+</ol>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>首先需要购买国外服务器，我这里使用<a href="https://billing.virmach.com/cart.php?gid=1" target="_blank" rel="noopener">Virmach</a>目前我找到的支持Alipay并且相当便宜的12美刀/年<br><img src="/picture/virmach/1559790719854.jpg" alt="1"><br>不过网上有人说Openvz的vps是不支持这个版本的BBR加速，没多想当时立马买了这个KVM &amp; SSD Windows VPS; 有优惠最终$12.5/year<br><img src="/picture/virmach/1559791257949.jpg" alt="2"><br>接下来 选择洛杉矶地区的服务器，CentOS 7*64系统，选择完系统后，拉到最下面点击 add to cart(添加到购物车)<br><img src="/picture/virmach/vi2.jpg" alt="3"><br>如果没有账号的话这里就需要填写信息了<br><img src="/picture/virmach/vi3.jpg" alt="4"><br><img src="/picture/virmach/vi33.jpg" alt="4"><br>购买成功后，到主页面点击Home—Active<br><img src="/picture/virmach/vi4.jpg" alt="5"><br>在这个界面可以进行服务器的关机重启控制<br><img src="/picture/virmach/1559791781746.jpg" alt="6"><br>然后最下面就是服务器的信息，IP地址和root密码，带宽使用情况。<br><img src="/picture/virmach/1559792210370.jpg" alt="7"><br>至此服务我们准备完毕，接下来进行第二步，ssh远程连接我们的服务器</p>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>我这里使用的工具<a href="https://www.termius.com/" target="_blank" rel="noopener">temius</a>, 现在安装打开界面如下<br><img src="/picture/virmach/1559792412609.jpg" alt="8"><br>输入ssh root@YOUR_IP -p 22<br>(22是默认端口)<br><img src="/picture/virmach/1559792598114.jpg" alt="9"><br>输入你的密码（上面提到的密码）<br><img src="/picture/virmach/1559792746964.jpg" alt="10"><br>OK连接成功<br><img src="/picture/virmach/1559792868460.jpg" alt="11"></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>SSR脚本支持的系统有：CentOS 6+/Debian 6+/Ubuntu 14.04+</p>
+<p>分别输入以下两段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line">wget -N --no-check-certificate https:<span class="comment">//raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh</span></span><br></pre></td></tr></table></figure></p>
+<p>备用脚本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https:<span class="comment">//raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh chmod +x shadowsocksR.sh./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</span></span><br></pre></td></tr></table></figure>
+<p>代码运行成功，出现安装的界面，输入数字1 开始安装ShadowsocksR<br><img src="/picture/virmach/ssr2.jpg" alt="12"><br>端口号随便选择，但是不能以0为开头<br><img src="/picture/virmach/ssr3.jpg" alt="13"><br>设置密码，随意, 需要自己记住<br>加密方式任意选择 14、15、16 需要安装libsodium 嫌麻烦的话就选其他的。（注意：如果下一步中要使用 auth_chain_a 协议，请加密方式选择 none，混淆随意 建议 plain）<br><img src="/picture/virmach/ssr4.jpg" alt="14"><br>如果是个人使用连接数及限速全部默认<br><img src="/picture/virmach/ssr5.jpg" alt="15"><br>然后输入“Y”确认部署<br><img src="/picture/virmach/ssr6.jpg" alt="16"><br>安装完成后，保存好SS账号信息就可以使用了<br><img src="/picture/virmach/ssr7.jpg" alt="17"><br>到这里SSR已经配置完成，你已经可以正常使用了</p>
+<h3 id="安装谷歌BBR加速"><a href="#安装谷歌BBR加速" class="headerlink" title="安装谷歌BBR加速"></a>安装谷歌BBR加速</h3><p>以下脚本依次执行进行安装<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https:<span class="comment">//github.com/teddysun/across/raw/master/bbr.sh</span></span><br><span class="line"></span><br><span class="line">chmod +x bbr.sh</span><br><span class="line"></span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure></p>
+<p>然后按任意键确定安装；<br>ctrl+c取消安装<br><img src="/picture/virmach/ssr8.jpg" alt="18"><br>安装完成后，输入“Y”重启服务器或者<br>手动执行reboot也可以<br><img src="/picture/virmach/ssr9.jpg" alt="19"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/other/" rel="tag"># other</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/13/jd-gui/" rel="next" title="jd-gui">
+                <i class="fa fa-chevron-left"></i> jd-gui
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="lkk">
+            
+              <p class="site-author-name" itemprop="name">lkk</p>
+              <p class="site-description motion-element" itemprop="description">一代码农也有闷骚情怀</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liang10294036" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/yourname" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100009676295987" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">1.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH"><span class="nav-number">2.</span> <span class="nav-text">SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装谷歌BBR加速"><span class="nav-number">4.</span> <span class="nav-text">安装谷歌BBR加速</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lkk</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://lkk.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/06/06/脚本搭建SSR服务-virmach/';
+          this.page.identifier = '2019/06/06/脚本搭建SSR服务-virmach/';
+          this.page.title = '脚本搭建SSR服务<virmach>';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://lkk.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

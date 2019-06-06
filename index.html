@@ -252,6 +252,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/06/脚本搭建SSR服务-virmach/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/06/脚本搭建SSR服务-virmach/" itemprop="url">脚本搭建SSR服务<virmach></virmach></a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-06T10:27:22+08:00">
+                2019-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记录/" itemprop="url" rel="index">
+                    <span itemprop="name">记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/06/脚本搭建SSR服务-virmach/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/06/脚本搭建SSR服务-virmach/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！</p>
+<p>准备：</p>
+<ol>
+<li>国外服务器</li>
+<li>ssh 远程连接服务器</li>
+<li>shadowsocksX客户端 <a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="noopener">MAC</a> <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">Windows</a></li>
+<li>补充：bbr加速</li>
+</ol>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>首先需要购买国外服务器，我这里使用<a href="https://billing.virmach.com/cart.php?gid=1" target="_blank" rel="noopener">Virmach</a>目前我找到的支持Alipay并且相当便宜的12美刀/年<br><img src="/picture/virmach/1559790719854.jpg" alt="1"><br>不过网上有人说Openvz的vps是不支持这个版本的BBR加速，没多想当时立马买了这个KVM &amp; SSD Windows VPS; 有优惠最终$12.5/year<br><img src="/picture/virmach/1559791257949.jpg" alt="2"><br>接下来 选择洛杉矶地区的服务器，CentOS 7*64系统，选择完系统后，拉到最下面点击 add to cart(添加到购物车)<br><img src="/picture/virmach/vi2.jpg" alt="3"><br>如果没有账号的话这里就需要填写信息了<br><img src="/picture/virmach/vi3.jpg" alt="4"><br><img src="/picture/virmach/vi33.jpg" alt="4"><br>购买成功后，到主页面点击Home—Active<br><img src="/picture/virmach/vi4.jpg" alt="5"><br>在这个界面可以进行服务器的关机重启控制<br><img src="/picture/virmach/1559791781746.jpg" alt="6"><br>然后最下面就是服务器的信息，IP地址和root密码，带宽使用情况。<br><img src="/picture/virmach/1559792210370.jpg" alt="7"><br>至此服务我们准备完毕，接下来进行第二步，ssh远程连接我们的服务器</p>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>我这里使用的工具<a href="https://www.termius.com/" target="_blank" rel="noopener">temius</a>, 现在安装打开界面如下<br><img src="/picture/virmach/1559792412609.jpg" alt="8"><br>输入ssh root@YOUR_IP -p 22<br>(22是默认端口)<br><img src="/picture/virmach/1559792598114.jpg" alt="9"><br>输入你的密码（上面提到的密码）<br><img src="/picture/virmach/1559792746964.jpg" alt="10"><br>OK连接成功<br><img src="/picture/virmach/1559792868460.jpg" alt="11"></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>SSR脚本支持的系统有：CentOS 6+/Debian 6+/Ubuntu 14.04+</p>
+<p>分别输入以下两段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line">wget -N --no-check-certificate https:<span class="comment">//raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh</span></span><br></pre></td></tr></table></figure></p>
+<p>备用脚本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https:<span class="comment">//raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh chmod +x shadowsocksR.sh./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</span></span><br></pre></td></tr></table></figure>
+<p>代码运行成功，出现安装的界面，输入数字1 开始安装ShadowsocksR<br><img src="/picture/virmach/ssr2.jpg" alt="12"><br>端口号随便选择，但是不能以0为开头<br><img src="/picture/virmach/ssr3.jpg" alt="13"><br>设置密码，随意, 需要自己记住<br>加密方式任意选择 14、15、16 需要安装libsodium 嫌麻烦的话就选其他的。（注意：如果下一步中要使用 auth_chain_a 协议，请加密方式选择 none，混淆随意 建议 plain）<br><img src="/picture/virmach/ssr4.jpg" alt="14"><br>如果是个人使用连接数及限速全部默认<br><img src="/picture/virmach/ssr5.jpg" alt="15"><br>然后输入“Y”确认部署<br><img src="/picture/virmach/ssr6.jpg" alt="16"><br>安装完成后，保存好SS账号信息就可以使用了<br><img src="/picture/virmach/ssr7.jpg" alt="17"><br>到这里SSR已经配置完成，你已经可以正常使用了</p>
+<h3 id="安装谷歌BBR加速"><a href="#安装谷歌BBR加速" class="headerlink" title="安装谷歌BBR加速"></a>安装谷歌BBR加速</h3><p>以下脚本依次执行进行安装<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https:<span class="comment">//github.com/teddysun/across/raw/master/bbr.sh</span></span><br><span class="line"></span><br><span class="line">chmod +x bbr.sh</span><br><span class="line"></span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure></p>
+<p>然后按任意键确定安装；<br>ctrl+c取消安装<br><img src="/picture/virmach/ssr8.jpg" alt="18"><br>安装完成后，输入“Y”重启服务器或者<br>手动执行reboot也可以<br><img src="/picture/virmach/ssr9.jpg" alt="19"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/jd-gui/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -840,146 +1008,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/Mac-OS-10-11解决Operation-not-permitted-usr-bin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lkk">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Quinn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/18/Mac-OS-10-11解决Operation-not-permitted-usr-bin/" itemprop="url">Mac OS 10.11解决Operation not permitted - /usr/bin/</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T15:22:21+08:00">
-                2019-04-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/04/18/Mac-OS-10-11解决Operation-not-permitted-usr-bin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/18/Mac-OS-10-11解决Operation-not-permitted-usr-bin/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本人使用的是Mac 在安装 Jekyll的时候出现没有权限的提示可是自己明明在执行命令的时候用了sudo，百度了一番才知道在全新的os x ei Capitan 10.11上已经使用了Rootless, 可以理解为系统保护机制<br>系统默认会锁定 /system/sbin/usr 这个目录下，但是我的目的还没有达到安装Jekyll</p>
-<ol>
-<li><p>更换目录 例如：$ sudo gem install -n (your diretory) jekyll （推荐做法 不过别忘记配置环境变量）</p>
-</li>
-<li><p>先关闭Rootless安装完Jekyll在打开(本篇博文的重点)</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/18/Mac-OS-10-11解决Operation-not-permitted-usr-bin/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1032,7 +1060,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -252,6 +252,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/18/EasyPermissions轻松搞定动态权限申请/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/18/EasyPermissions轻松搞定动态权限申请/" itemprop="url">EasyPermissions轻松搞定动态权限申请</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T12:30:04+08:00">
+                2018-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/18/EasyPermissions轻松搞定动态权限申请/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/04/18/EasyPermissions轻松搞定动态权限申请/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>android 6.0的发布对权限系统进行了改变，部分“Dangerous Permission”需要在运行时询问申请，这中间涉及到与用户交互问题，例如 用户操作 同意 拒绝 不再询问 都要一一做出响应，很是繁琐， 目前google已经推出了开源项目Easypermissions来简化这一操作</p>
+<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><p>GitHub地址<br><a href="https://github.com/googlesamples/easypermissions" target="_blank" rel="noopener">easypermissions</a></p>
+<p>Google官网介绍<br><a href="https://developer.android.com/training/permissions/requesting.html" target="_blank" rel="noopener">在运行时请求权限</a></p>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// For developers using AndroidX in their applications</span></span><br><span class="line">    implementation <span class="string">'pub.devrel:easypermissions:3.0.0'</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// For developers using the Android Support Library</span></span><br><span class="line">    implementation <span class="string">'pub.devrel:easypermissions:2.0.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="检查运行时读写权限"><a href="#检查运行时读写权限" class="headerlink" title="检查运行时读写权限"></a>检查运行时读写权限</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EasyPermissions.hasPermissions(<span class="keyword">this</span>, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/18/EasyPermissions轻松搞定动态权限申请/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/任务串行-非阻塞队列-线程锁和阻塞队列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -895,7 +1033,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
