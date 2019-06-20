@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速  服务器首先需要购买国外服务器，我这里使用Virmach目前我找到的支持Al">
+<meta name="description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速">
 <meta name="keywords" content="other">
 <meta property="og:type" content="article">
 <meta property="og:title" content="脚本搭建SSR服务&lt;virmach&gt;">
 <meta property="og:url" content="http://yoursite.com/2019/06/06/脚本搭建SSR服务-virmach/index.html">
 <meta property="og:site_name" content="Quinn">
-<meta property="og:description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速  服务器首先需要购买国外服务器，我这里使用Virmach目前我找到的支持Al">
+<meta property="og:description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/picture/virmach/1559790719854.jpg">
 <meta property="og:image" content="http://yoursite.com/picture/virmach/1559791257949.jpg">
@@ -107,10 +107,10 @@
 <meta property="og:image" content="http://yoursite.com/picture/virmach/ssr7.jpg">
 <meta property="og:image" content="http://yoursite.com/picture/virmach/ssr8.jpg">
 <meta property="og:image" content="http://yoursite.com/picture/virmach/ssr9.jpg">
-<meta property="og:updated_time" content="2019-06-06T04:43:36.456Z">
+<meta property="og:updated_time" content="2019-06-06T04:47:55.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="脚本搭建SSR服务&lt;virmach&gt;">
-<meta name="twitter:description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速  服务器首先需要购买国外服务器，我这里使用Virmach目前我找到的支持Al">
+<meta name="twitter:description" content="SSR的全称是Shadowsocks,是一个免费、开源的加密代理项目，通过加密代理来绕过防火墙，科学上网绕开qiang的约束；它是由一个名为“clowwindy”的中国程序员于2012年创建的； 致敬！ 准备：  国外服务器 ssh 远程连接服务器 shadowsocksX客户端 MAC Windows 补充：bbr加速">
 <meta name="twitter:image" content="http://yoursite.com/picture/virmach/1559790719854.jpg">
 
 
@@ -381,6 +381,7 @@
 <li>shadowsocksX客户端 <a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="noopener">MAC</a> <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">Windows</a></li>
 <li>补充：bbr加速</li>
 </ol>
+<a id="more"></a>
 <h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>首先需要购买国外服务器，我这里使用<a href="https://billing.virmach.com/cart.php?gid=1" target="_blank" rel="noopener">Virmach</a>目前我找到的支持Alipay并且相当便宜的12美刀/年<br><img src="/picture/virmach/1559790719854.jpg" alt="1"><br>不过网上有人说Openvz的vps是不支持这个版本的BBR加速，没多想当时立马买了这个KVM &amp; SSD Windows VPS; 有优惠最终$12.5/year<br><img src="/picture/virmach/1559791257949.jpg" alt="2"><br>接下来 选择洛杉矶地区的服务器，CentOS 7*64系统，选择完系统后，拉到最下面点击 add to cart(添加到购物车)<br><img src="/picture/virmach/vi2.jpg" alt="3"><br>如果没有账号的话这里就需要填写信息了<br><img src="/picture/virmach/vi3.jpg" alt="4"><br><img src="/picture/virmach/vi33.jpg" alt="4"><br>购买成功后，到主页面点击Home—Active<br><img src="/picture/virmach/vi4.jpg" alt="5"><br>在这个界面可以进行服务器的关机重启控制<br><img src="/picture/virmach/1559791781746.jpg" alt="6"><br>然后最下面就是服务器的信息，IP地址和root密码，带宽使用情况。<br><img src="/picture/virmach/1559792210370.jpg" alt="7"><br>至此服务我们准备完毕，接下来进行第二步，ssh远程连接我们的服务器</p>
 <h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>我这里使用的工具<a href="https://www.termius.com/" target="_blank" rel="noopener">temius</a>, 现在安装打开界面如下<br><img src="/picture/virmach/1559792412609.jpg" alt="8"><br>输入ssh root@YOUR_IP -p 22<br>(22是默认端口)<br><img src="/picture/virmach/1559792598114.jpg" alt="9"><br>输入你的密码（上面提到的密码）<br><img src="/picture/virmach/1559792746964.jpg" alt="10"><br>OK连接成功<br><img src="/picture/virmach/1559792868460.jpg" alt="11"></p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>SSR脚本支持的系统有：CentOS 6+/Debian 6+/Ubuntu 14.04+</p>
@@ -429,6 +430,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/20/Kotlin-笔记/" rel="prev" title="Kotlin 笔记">
+                Kotlin 笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -517,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -528,7 +533,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -539,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
