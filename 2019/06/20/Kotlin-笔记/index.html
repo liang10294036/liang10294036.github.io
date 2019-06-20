@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="记录,">
+  <meta name="keywords" content="kotlin,">
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="中文站Github菜鸟工具-在线编译 Kotlin 设计精髓 空值安全 扩展函数 扩展属性 属性代理 运算符 解构 协程  构造函数 （constructor）Koltin 中的类可以有一个 主构造器，以及一个或多个次构造器，主构造器是类头部的一部分，位于类名称之后:1class Person constructor(firstName: String) &amp;#123;&amp;#125; 如果主构造器没有">
-<meta name="keywords" content="记录">
+<meta name="keywords" content="kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin 笔记">
 <meta property="og:url" content="http://yoursite.com/2019/06/20/Kotlin-笔记/index.html">
 <meta property="og:site_name" content="Quinn">
 <meta property="og:description" content="中文站Github菜鸟工具-在线编译 Kotlin 设计精髓 空值安全 扩展函数 扩展属性 属性代理 运算符 解构 协程  构造函数 （constructor）Koltin 中的类可以有一个 主构造器，以及一个或多个次构造器，主构造器是类头部的一部分，位于类名称之后:1class Person constructor(firstName: String) &amp;#123;&amp;#125; 如果主构造器没有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-20T09:36:49.067Z">
+<meta property="og:updated_time" content="2019-06-20T11:46:36.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin 笔记">
 <meta name="twitter:description" content="中文站Github菜鸟工具-在线编译 Kotlin 设计精髓 空值安全 扩展函数 扩展属性 属性代理 运算符 解构 协程  构造函数 （constructor）Koltin 中的类可以有一个 主构造器，以及一个或多个次构造器，主构造器是类头部的一部分，位于类名称之后:1class Person constructor(firstName: String) &amp;#123;&amp;#125; 如果主构造器没有">
@@ -364,6 +364,7 @@
 </ol>
 <h3 id="构造函数-（constructor）"><a href="#构造函数-（constructor）" class="headerlink" title="构造函数 （constructor）"></a>构造函数 （constructor）</h3><p>Koltin 中的类可以有一个 主构造器，以及一个或多个次构造器，主构造器是类头部的一部分，位于类名称之后:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Person constructor(firstName: String) &#123;&#125;</span><br></pre></td></tr></table></figure></p>
 <p>如果主构造器没有任何注解，也没有任何可见度修饰符，那么constructor关键字可以省略。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Person(firstName: String) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h4 id="主构造器"><a href="#主构造器" class="headerlink" title="主构造器"></a>主构造器</h4><p>主构造器中不能包含任何代码，初始化代码可以放在初始化代码段中，初始化代码段使用 init 关键字作为前缀。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Person constructor(firstName: String) &#123;</span><br><span class="line">    init &#123;</span><br><span class="line">        println(<span class="string">"FirstName is $firstName"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="次构造函数"><a href="#次构造函数" class="headerlink" title="次构造函数"></a>次构造函数</h4><p>类也可以有二级构造函数，需要加前缀 constructor:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123; </span><br><span class="line">    <span class="keyword">constructor</span>(parent: Person) &#123;</span><br><span class="line">        parent.children.add(<span class="keyword">this</span>) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>如果类有主构造函数，每个次构造函数都要，或直接或间接通过另一个次构造函数代理主构造函数。在同一个类中代理另一个构造函数使用 this 关键字：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Person(val name: String) &#123;</span><br><span class="line">    <span class="keyword">constructor</span> (name: String, age:Int) : this(name) &#123;</span><br><span class="line">        <span class="comment">// 初始化...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -429,7 +430,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/记录/" rel="tag"># 记录</a>
+            <a href="/tags/kotlin/" rel="tag"># kotlin</a>
           
         </div>
       
@@ -550,7 +551,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -561,7 +562,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
