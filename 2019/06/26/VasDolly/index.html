@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="渠道打包,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Github简介VasDolly是一种快速多渠道打包工具，同时支持基于V1签名和V2签名进行多渠道打包。插件本身会自动检测Apk使用的签名类别，并选择合适的多渠道打包方式，对使用者来说完全透明。V1.1.6版本已支持Android Gradle Plugin 3.0，欢迎使用！ 目前Gradle Plugin 2.2以上默认开启V2签名，所以如果想关闭V2签名，可将下面的v2SigningEnab">
+<meta name="keywords" content="渠道打包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VasDolly">
+<meta property="og:url" content="http://yoursite.com/2019/06/26/VasDolly/index.html">
+<meta property="og:site_name" content="Quinn">
+<meta property="og:description" content="Github简介VasDolly是一种快速多渠道打包工具，同时支持基于V1签名和V2签名进行多渠道打包。插件本身会自动检测Apk使用的签名类别，并选择合适的多渠道打包方式，对使用者来说完全透明。V1.1.6版本已支持Android Gradle Plugin 3.0，欢迎使用！ 目前Gradle Plugin 2.2以上默认开启V2签名，所以如果想关闭V2签名，可将下面的v2SigningEnab">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-26T09:05:11.427Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VasDolly">
+<meta name="twitter:description" content="Github简介VasDolly是一种快速多渠道打包工具，同时支持基于V1签名和V2签名进行多渠道打包。插件本身会自动检测Apk使用的签名类别，并选择合适的多渠道打包方式，对使用者来说完全透明。V1.1.6版本已支持Android Gradle Plugin 3.0，欢迎使用！ 目前Gradle Plugin 2.2以上默认开启V2签名，所以如果想关闭V2签名，可将下面的v2SigningEnab">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/26/VasDolly/">
+
+
+
+
+
+  <title>VasDolly | Quinn</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Quinn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">lkk's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/VasDolly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VasDolly</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T16:58:56+08:00">
+                2019-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/26/VasDolly/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/26/VasDolly/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Github"><a href="#Github" class="headerlink" title="Github"></a><a href="https://github.com/Tencent/VasDolly/" target="_blank" rel="noopener">Github</a></h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>VasDolly是一种快速多渠道打包工具，同时支持基于V1签名和V2签名进行多渠道打包。插件本身会自动检测Apk使用的签名类别，并选择合适的多渠道打包方式，对使用者来说完全透明。<br><code>V1.1.6</code>版本已支持Android Gradle Plugin 3.0，欢迎使用！</p>
+<p>目前Gradle Plugin 2.2以上默认开启V2签名，所以如果想关闭V2签名，可将下面的v2SigningEnabled设置为false。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            ...</span><br><span class="line">            v1SigningEnabled <span class="literal">true</span></span><br><span class="line">            v2SigningEnabled <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        debug &#123;</span><br><span class="line">            ...</span><br><span class="line">            v1SigningEnabled <span class="literal">true</span></span><br><span class="line">            v2SigningEnabled <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="接入流程"><a href="#接入流程" class="headerlink" title="接入流程"></a>接入流程</h1><a id="more"></a>
+<h2 id="添加对VasDolly-Plugin的依赖"><a href="#添加对VasDolly-Plugin的依赖" class="headerlink" title="添加对VasDolly Plugin的依赖"></a>添加对VasDolly Plugin的依赖</h2><p>在根工程的<code>build.gradle</code>中，添加对打包Plugin的依赖：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">        classpath <span class="string">'com.android.tools.build:gradle:3.0.0'</span></span><br><span class="line">        classpath <span class="string">'com.leon.channel:plugin:2.0.3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="引用VasDolly-Plugin"><a href="#引用VasDolly-Plugin" class="headerlink" title="引用VasDolly Plugin"></a>引用VasDolly Plugin</h2><p>在主App工程的<code>build.gradle</code>中，添加对VasDolly Plugin的引用：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="string">plugin:</span> <span class="string">'channel'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="添加对VasDolly-helper类库的依赖"><a href="#添加对VasDolly-helper类库的依赖" class="headerlink" title="添加对VasDolly helper类库的依赖"></a>添加对VasDolly helper类库的依赖</h2><p>在主App工程的<code>build.gradle</code>中，添加读取渠道信息的helper类库依赖：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    api <span class="string">'com.leon.channel:helper:2.0.3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置渠道列表"><a href="#配置渠道列表" class="headerlink" title="配置渠道列表"></a>配置渠道列表</h2><p>目前有两种方式配置渠道列表，最终的渠道列表是两者的累加之和：</p>
+<ol>
+<li><p>在<code>gradle.properties</code>文件指定渠道文件名称，该渠道文件必须位于根工程目录下，一行一个渠道信息。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">channel_file=channel.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>channel</code>或者<code>rebuildChannel</code>属性中通过<code>channelFile</code>属性指定渠道文件，一行一个渠道信息。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">channel&#123;</span><br><span class="line">    <span class="comment">//指定渠道文件</span></span><br><span class="line">    channelFile = file(<span class="string">"/Users/leon/Downloads/testChannel.txt"</span>)</span><br><span class="line">&#125;</span><br><span class="line">rebuildChannel&#123;</span><br><span class="line">    <span class="comment">//指定渠道文件</span></span><br><span class="line">    channelFile = file(<span class="string">"/Users/leon/Downloads/testReChannel.txt"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="通过Gradle生成多渠道包"><a href="#通过Gradle生成多渠道包" class="headerlink" title="通过Gradle生成多渠道包"></a>通过Gradle生成多渠道包</h2><h3 id="直接编译生成多渠道包"><a href="#直接编译生成多渠道包" class="headerlink" title="直接编译生成多渠道包"></a>直接编译生成多渠道包</h3><p>若是直接编译生成多渠道包，首先要配置渠道文件、渠道包的输出目录和渠道包的命名规则：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">channel&#123;</span><br><span class="line">    <span class="comment">//指定渠道文件</span></span><br><span class="line">    channelFile = file(<span class="string">"/Users/leon/Downloads/testChannel.txt"</span>)</span><br><span class="line">     <span class="comment">//多渠道包的输出目录，默认为new File(project.buildDir,"channel")</span></span><br><span class="line">    baseOutputDir = <span class="keyword">new</span> File(project.buildDir,<span class="string">"xxx"</span>)</span><br><span class="line">    <span class="comment">//多渠道包的命名规则，默认为：$&#123;appName&#125;-$&#123;versionName&#125;-$&#123;versionCode&#125;-$&#123;flavorName&#125;-$&#123;buildType&#125;</span></span><br><span class="line">    apkNameFormat =<span class="string">'$&#123;appName&#125;-$&#123;versionName&#125;-$&#123;versionCode&#125;-$&#123;flavorName&#125;-$&#123;buildType&#125;'</span></span><br><span class="line">    <span class="comment">//快速模式：生成渠道包时不进行校验（速度可以提升10倍以上，默认为false）</span></span><br><span class="line">    isFastMode = <span class="literal">false</span></span><br><span class="line">    <span class="comment">//buildTime的时间格式，默认格式：yyyyMMdd-HHmmss</span></span><br><span class="line">    buildTimeDateFormat = <span class="string">'yyyyMMdd-HH:mm:ss'</span></span><br><span class="line">    <span class="comment">//低内存模式（仅针对V2签名，默认为false）：只把签名块、中央目录和EOCD读取到内存，不把最大头的内容块读取到内存，在手机上合成APK时，可以使用该模式</span></span><br><span class="line">    lowMemory = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，多渠道包的命名规则中，可使用以下字段：</p>
+<ul>
+<li>appName ： 当前project的name</li>
+<li>versionName ： 当前Variant的versionName</li>
+<li>versionCode ： 当前Variant的versionCode</li>
+<li>buildType ： 当前Variant的buildType，即debug or release</li>
+<li>flavorName ： 当前的渠道名称</li>
+<li>appId ： 当前Variant的applicationId</li>
+<li>buildTime ： 当前编译构建日期时间，时间格式可以自定义，默认格式：yyyyMMdd-HHmmss</li>
+</ul>
+<p>然后，通过<code>gradle channelDebug</code>、<code>gradle channelRelease</code>命令分别生成Debug和Release的多渠道包。</p>
+<p>为了方便临时生成渠道包进行测试，我们从<code>v2.0.0</code>开始支持添加渠道参数：<code>gradle channelDebug(channelRelease) -Pchannels=yingyongbao,gamecenter</code>，这里通过属性<code>channels</code>指定的渠道列表拥有更高的优先级，且和原始的文件方式是互斥的。</p>
+<h3 id="根据已有基础包重新生成多渠道包"><a href="#根据已有基础包重新生成多渠道包" class="headerlink" title="根据已有基础包重新生成多渠道包"></a>根据已有基础包重新生成多渠道包</h3><p>若是根据已有基础包重新生成多渠道包，首先要配置渠道文件、基础包的路径和渠道包的输出目录：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">rebuildChannel &#123;</span><br><span class="line">  <span class="comment">//指定渠道文件</span></span><br><span class="line">  channelFile = file(<span class="string">"/Users/leon/Downloads/testReChannel.txt"</span>)</span><br><span class="line">  baseDebugApk = 已有Debug APK    </span><br><span class="line">  baseReleaseApk = 已有Release APK</span><br><span class="line">  <span class="comment">//默认为new File(project.buildDir, "rebuildChannel/debug")</span></span><br><span class="line">  debugOutputDir = Debug渠道包输出目录   </span><br><span class="line">  <span class="comment">//默认为new File(project.buildDir, "rebuildChannel/release")</span></span><br><span class="line">  releaseOutputDir = Release渠道包输出目录</span><br><span class="line">  <span class="comment">//快速模式：生成渠道包时不进行校验（速度可以提升10倍以上，默认为false）</span></span><br><span class="line">  isFastMode = <span class="literal">false</span></span><br><span class="line">  <span class="comment">//低内存模式（仅针对V2签名，默认为false）：只把签名块、中央目录和EOCD读取到内存，不把最大头的内容块读取到内存，在手机上合成APK时，可以使用该模式</span></span><br><span class="line">  lowMemory = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后，通过<code>gradle rebuildChannel</code>命令生成多渠道包。</p>
+<p>为了方便临时生成渠道包进行测试，我们从<code>v2.0.0</code>开始支持添加渠道参数：<code>gradle rebuildChannel -Pchannels=yingyongbao,gamecenter</code>，这里通过属性<code>channels</code>指定的渠道列表拥有更高的优先级，且和原始的文件方式是互斥的。</p>
+<h2 id="通过命令行生成渠道包、读取渠道信息"><a href="#通过命令行生成渠道包、读取渠道信息" class="headerlink" title="通过命令行生成渠道包、读取渠道信息"></a>通过命令行生成渠道包、读取渠道信息</h2><p>从<code>V1.0.5</code>版本开始支持命令行，具体使用文档可参考<code>command</code>目录下的<a href="https://github.com/Tencent/VasDolly/blob/master/command/README.md" target="_blank" rel="noopener">README</a>。</p>
+<h3 id="读取渠道信息"><a href="#读取渠道信息" class="headerlink" title="读取渠道信息"></a>读取渠道信息</h3><p>通过helper类库中的<code>ChannelReaderUtil</code>类读取渠道信息。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String channel = ChannelReaderUtil.getChannel(getApplicationContext());</span><br></pre></td></tr></table></figure></p>
+<p>如果没有渠道信息，那么这里返回<code>null</code>，开发者需要自己判断。</p>
+<h1 id="Demo参考"><a href="#Demo参考" class="headerlink" title="Demo参考"></a>Demo参考</h1><p>详细的接入范式，可参考<a href="https://github.com/Tencent/VasDolly/tree/master/app" target="_blank" rel="noopener">Demo</a></p>
+<h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1><p>具体原理可参考<a href="https://github.com/Tencent/VasDolly/wiki/VasDolly%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86" target="_blank" rel="noopener">VasDolly实现原理</a></p>
+<h1 id="问题反馈"><a href="#问题反馈" class="headerlink" title="问题反馈"></a>问题反馈</h1><p>遇到任何问题或者有好的建议，欢迎提<a href="https://github.com/Tencent/VasDolly/issues" target="_blank" rel="noopener">issues</a>，或者QQ（1031747903）联系。</p>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><ol>
+<li>增加单元测试</li>
+<li>防渠道信息篡改</li>
+<li>提供Python脚本</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渠道打包/" rel="tag"># 渠道打包</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/20/Kotlin-笔记/" rel="next" title="Kotlin 笔记">
+                <i class="fa fa-chevron-left"></i> Kotlin 笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/31/编译pjsip-for-Android/" rel="prev" title="编译pjsip for Android">
+                编译pjsip for Android <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="lkk">
+            
+              <p class="site-author-name" itemprop="name">lkk</p>
+              <p class="site-description motion-element" itemprop="description">一代码农也有闷骚情怀</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liang10294036" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/yourname" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100009676295987" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Github"><span class="nav-number">1.</span> <span class="nav-text">Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接入流程"><span class="nav-number">3.</span> <span class="nav-text">接入流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加对VasDolly-Plugin的依赖"><span class="nav-number">3.1.</span> <span class="nav-text">添加对VasDolly Plugin的依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用VasDolly-Plugin"><span class="nav-number">3.2.</span> <span class="nav-text">引用VasDolly Plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加对VasDolly-helper类库的依赖"><span class="nav-number">3.3.</span> <span class="nav-text">添加对VasDolly helper类库的依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置渠道列表"><span class="nav-number">3.4.</span> <span class="nav-text">配置渠道列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过Gradle生成多渠道包"><span class="nav-number">3.5.</span> <span class="nav-text">通过Gradle生成多渠道包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接编译生成多渠道包"><span class="nav-number">3.5.1.</span> <span class="nav-text">直接编译生成多渠道包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据已有基础包重新生成多渠道包"><span class="nav-number">3.5.2.</span> <span class="nav-text">根据已有基础包重新生成多渠道包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过命令行生成渠道包、读取渠道信息"><span class="nav-number">3.6.</span> <span class="nav-text">通过命令行生成渠道包、读取渠道信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读取渠道信息"><span class="nav-number">3.6.1.</span> <span class="nav-text">读取渠道信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Demo参考"><span class="nav-number">4.</span> <span class="nav-text">Demo参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现原理"><span class="nav-number">5.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题反馈"><span class="nav-number">6.</span> <span class="nav-text">问题反馈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TODO"><span class="nav-number">7.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lkk</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://lkk.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/06/26/VasDolly/';
+          this.page.identifier = '2019/06/26/VasDolly/';
+          this.page.title = 'VasDolly';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://lkk.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

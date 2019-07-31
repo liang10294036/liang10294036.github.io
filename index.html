@@ -252,6 +252,317 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/编译pjsip-for-Android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/31/编译pjsip-for-Android/" itemprop="url">编译pjsip for Android</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-31T10:25:07+08:00">
+                2019-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/31/编译pjsip-for-Android/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/31/编译pjsip-for-Android/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="pjsip"><a href="#pjsip" class="headerlink" title="pjsip"></a><a href="https://www.pjsip.org/docs/book-latest/html/index.html" target="_blank" rel="noopener">pjsip</a></h3><p>PJSIP是一个包含了SIP、SDP、RTP、RTCP、STUN、ICE等协议实现的开源库。它把基于信令协议SIP的多媒体框架和NAT穿透功能整合成高层次、抽象的多媒体通信API，这套API能够很容易的一直到各种构架中，不管是桌面计算机，还是嵌入式设备等。</p>
+<p>PJSIP支持音频、视频和即时消息，并具有广泛的文档。PJSIP非常便携。在移动设备上，它抽象出与系统相关的功能，并且在许多情况下能够利用设备的本地多媒体功能。<br><a href="https://www.pjsip.org" target="_blank" rel="noopener">官网</a><br><a href="https://blog.csdn.net/zxg519/article/details/18307433" target="_blank" rel="noopener">细致的介绍以及原理</a></p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>想要在Android开发中使用这个开源库，就要进行编译生成<strong>依赖包</strong>和<strong>.so库</strong></p>
+<pre><code>目录：
+lib: [PJPROJECT的lib库]
+pjlib:[基础框架库]
+pjlib-util:[辅助工具库]
+pjmedia:[开源的媒体栈]
+pjnath:[开源的NAT-T辅助库]
+pjsip:[开源的SIP协议栈]
+pjsip-apps[demo]
+</code></pre><h4 id="第一步-准备：-创建config-site-h"><a href="#第一步-准备：-创建config-site-h" class="headerlink" title="第一步  准备： 创建config_site.h"></a>第一步  准备： 创建config_site.h</h4><p>需要现在下载源码 <a href="https://trac.pjsip.org/repos/wiki/Getting-Started/Download-Source#GettingfromSubversiontrunk" target="_blank" rel="noopener">官网下载地址</a><br>创建pjlib/include/pj/config_site.h, 并<a href="https://trac.pjsip.org/repos/wiki/Getting-Started/Build-Preparation" target="_blank" rel="noopener">config.site.h</a>它添加内容：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Activate Android specific settings in the 'config_site_sample.h' */</span></span><br><span class="line">#define PJ_CONFIG_ANDROID 1</span><br><span class="line">#include &lt;pj/config_site_sample.h&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="第二部-构建：环境"><a href="#第二部-构建：环境" class="headerlink" title="第二部 构建：环境"></a>第二部 构建：环境</h4><p>需要为你的ndk配置当前的环境变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">export</span> ANDROID_NDK_ROOT=[YOUR ANDROID_NDK ROOT DIR]  <span class="comment">//你的ndk根目录</span></span><br></pre></td></tr></table></figure></p>
+<p>然后依次执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure-android</span><br><span class="line">$ make dep &amp;&amp; make clean &amp;&amp; make</span><br></pre></td></tr></table></figure></p>
+<pre><code>这里需要说明下，本人在执行完./configure-android的时候遇到问题如下：
+aconfigure: error: C preprocessor &quot;/lib/cpp&quot; fails sanity check
+See `config.log&apos; for more details
+</code></pre><p><a href="https://stackoverflow.com/questions/49325337/error-in-compiling-pjsip-2-7-2-for-android-devices" target="_blank" rel="noopener">stackoverflow</a>这哥们遇到的和我一样，but他解决了却不告诉我， 连喊三个what？<br>拿着他的编译成果纵然不甘心，一番搜索终于还是解决了，（官网教程也有写，只不过放在最底下，让我这按部就班背锅了） 原来pjsip无法建立在android-ndk-r15上，只要指定 NDK_TOOLCHAIN_VERSION版本就好了，执行以下指令：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ NDK_TOOLCHAIN_VERSION=<span class="number">4.9</span> TARGET_ABI=armeabi ./configure-android --use-ndk-cflags</span><br></pre></td></tr></table></figure></p>
+<h4 id="第三步：-生成libpjsua2-so"><a href="#第三步：-生成libpjsua2-so" class="headerlink" title="第三步： 生成libpjsua2.so"></a>第三步： 生成libpjsua2.so</h4><p>需要使用SWIG编译java接口文件<a href="http://www.swig.org/download.html" target="_blank" rel="noopener">swig下载</a><br>在这个过程中下载<a href="https://ftp.pcre.org/pub/pcre/" target="_blank" rel="noopener">pcre-build.sh</a>需要用的压缩包<br>我下载的是pcre-8.40.tar.bz2<br>把pcre-8.40.tar.bz2拷贝到swig的根目录下<br>重命名pcre-8.40.tar.bz2为pcre-8.40.tar<br>进入到swig根目录下，执行./Tools/pcre-build.sh<br>依次执行 ./autogen.sh<br>./configure<br>make<br>sudo make install</p>
+<p>然后切到pjsip-apps/src/swig目录执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
+<p>等待执行完毕…<br>最终会在pjsip-apps/src/swig/java/android/app/src/main/jniLibs目录下生成libpjsua2.so<br>同时在pjsip-apps/src/swig/java/android/app/src/main生成<br>很多java文件。这些文件也是给apk开发使用的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd pjsip-apps/src/pjsua/android/jni </span><br><span class="line">$ make <span class="comment">//最终会生成libpjsua.so（例子）</span></span><br></pre></td></tr></table></figure>
+<p>（如果需视频则要把libopenh264.so也导入）</p>
+<p>我的编译成果：<a href="https://github.com/liang10294036/pjsip-android" target="_blank" rel="noopener">github</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/VasDolly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lkk">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Quinn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/26/VasDolly/" itemprop="url">VasDolly</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T16:58:56+08:00">
+                2019-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/26/VasDolly/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/26/VasDolly/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Github"><a href="#Github" class="headerlink" title="Github"></a><a href="https://github.com/Tencent/VasDolly/" target="_blank" rel="noopener">Github</a></h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>VasDolly是一种快速多渠道打包工具，同时支持基于V1签名和V2签名进行多渠道打包。插件本身会自动检测Apk使用的签名类别，并选择合适的多渠道打包方式，对使用者来说完全透明。<br><code>V1.1.6</code>版本已支持Android Gradle Plugin 3.0，欢迎使用！</p>
+<p>目前Gradle Plugin 2.2以上默认开启V2签名，所以如果想关闭V2签名，可将下面的v2SigningEnabled设置为false。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            ...</span><br><span class="line">            v1SigningEnabled <span class="literal">true</span></span><br><span class="line">            v2SigningEnabled <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        debug &#123;</span><br><span class="line">            ...</span><br><span class="line">            v1SigningEnabled <span class="literal">true</span></span><br><span class="line">            v2SigningEnabled <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="接入流程"><a href="#接入流程" class="headerlink" title="接入流程"></a>接入流程</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/26/VasDolly/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/Kotlin-笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -729,322 +1040,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/ExifInterface/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lkk">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Quinn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/25/ExifInterface/" itemprop="url">ExifInterface</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-25T15:47:12+08:00">
-                2019-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/记录/" itemprop="url" rel="index">
-                    <span itemprop="name">记录</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/04/25/ExifInterface/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/25/ExifInterface/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><a href="https://developer.android.com/reference/android/media/ExifInterface" target="_blank" rel="noopener">ExifInterface</a></p>
-<p>这是一个用于在jpeg文件或原始图像文件中读取和写入exif标记的类。<br>支持的格式有：jpeg、dng、cr2、nef、nrw、arw、rw2、orf、pef、srw、raf和heif。<br>jpeg图像文件支持属性突变<br>Android部分手机调起相机拿到的照片旋转了90度. </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/25/ExifInterface/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/Kotlin-使用命令行编译/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lkk">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Quinn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/19/Kotlin-使用命令行编译/" itemprop="url">Kotlin 使用命令行编译</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T10:21:46+08:00">
-                2019-04-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/04/19/Kotlin-使用命令行编译/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/19/Kotlin-使用命令行编译/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://github.com/JetBrains/kotlin" target="_blank" rel="noopener">JetBrains-Kotlin</a><br><a href="https://try.kotlinlang.org/#/Examples/Hello,%20world!/Simplest%20version/Simplest%20version.kt" target="_blank" rel="noopener">Kotlin在线运行及代码演示</a></p>
-<p>studio 运行kotlin每次都要启动程序 着实不爽，在线执行时常崩溃， 于是便想起命令行的方式， 类似pathon在在终端执行文件以及直接运行代码</p>
-<p><strong>本地终端执行</strong></p>
-<h3 id="widows-安装"><a href="#widows-安装" class="headerlink" title="widows 安装"></a>widows 安装</h3><p>Kotlin 命令行编译工具下载地址：<a href="https://github.com/JetBrains/kotlin/releases" target="_blank" rel="noopener">https://github.com/JetBrains/kotlin/releases</a>,选择版本下载。<br>下载完成后，解压到指定目录，然后将 bin 目录添加到系统环境变量。bin 目录包含编译和运行 Kotlin 所需的脚本。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/19/Kotlin-使用命令行编译/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1097,7 +1092,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1108,7 +1103,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1119,7 +1114,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
